@@ -2,7 +2,7 @@
 
 A minimum Jekyll blog template with some customization (math, tables, UML diagrams, ...) based on the [Minimal Mistakes Theme](https://mmistakes.github.io/minimal-mistakes/).
 
-**[Click here to preview!](https://trmwzm.github.io/min-mist-testing/styling-syntax-test/)**
+**[Click here to preview!](https://trmwzm.github.io/min-mist-testing/)**
 
 To further customize your site, please refer to [the documentation](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
 
