@@ -1,8 +1,8 @@
-# [Minimal Mistakes Template](https://github.com/j3soon/minimal-mistakes-template/)
+# [Minimal Mistakes Testing](https://github.com/trmwzm/min-mist-testing/)
 
 A minimum Jekyll blog template with some customization based on the [Minimal Mistakes Theme](https://mmistakes.github.io/minimal-mistakes/).
 
-**[Click here to preview!](https://j3soon.github.io/minimal-mistakes-template/styling-syntax-test/)**
+**[Click here to preview!](https://trmwzm.github.io/min-mist-testing/styling-syntax-test/)**
 
 To further customize your site, please refer to [the documentation](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/).
 
@@ -29,8 +29,8 @@ scripts/set_env_ghpages.sh
 Full local preview commands:
 
 ```
-git clone https://github.com/j3soon/minimal-mistakes-template.git
-cd minimal-mistakes-template
+git clone https://github.com/trmwzm/min-mist-testing.git
+cd min-mist-testing
 scripts/preview.sh
 # If the local preview is correct, press Ctrl+C once.
 # Stage, Commit, and Push the modifications to GitHub to update GitHub Pages
@@ -63,8 +63,8 @@ scripts\set_env_ghpages.bat
 Full local preview commands:
 
 ```
-git clone https://github.com/j3soon/minimal-mistakes-template.git
-cd minimal-mistakes-template
+git clone https://github.com/trmwzm/min-mist-testing.git
+cd min-mist-testing
 scripts\preview.bat
 # If the local preview is correct, press Ctrl+C multiple times.
 # Stage, Commit, and Push the modifications to GitHub to update GitHub Pages

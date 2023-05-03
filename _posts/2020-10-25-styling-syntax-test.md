@@ -7,7 +7,7 @@ In this document, we'll showcase some commonly used features that Jekyll can ach
 
 The feature includes: markdown, mathjax, latex, yaml, css, html, liquid.
 
-[mm]: https://github.com/j3soon/minimal-mistakes-template
+[mm]: https://github.com/trmwzm/min-mist-testing
 
 <!--more-->
 
@@ -23,7 +23,8 @@ The following demonstrations are all previews followed by its markdown syntax:
 
 Normal text
 
-```
+```md
+from md:
 Normal text
 ```
 
@@ -37,6 +38,7 @@ Newline
 Success
 
 ```md
+from md:
 Newline
 Failed
 
@@ -50,6 +52,7 @@ Success
 > Snippet from other sites
 
 ```
+from md:
 > Snippet from other sites
 ```
 
@@ -58,6 +61,7 @@ Success
 `inline-code`
 
 ```
+from md:
 `inline-code`
 ```
 
@@ -66,6 +70,7 @@ Success
 **Bold**
 
 ```
+from md:
 **Bold**
 ```
 
@@ -76,6 +81,7 @@ code
 ```
 
 ````
+from md:
 ```
 code
 ```
@@ -88,6 +94,7 @@ int a = 0; // c code
 ```
 
 ````
+from md:
 ```c
 int a = 0; // c code
 ```
@@ -100,6 +107,7 @@ console.log("test"); // js code
 ```
 
 ````
+from md:
 ```js
 int a = 0; // js code
 ```
@@ -123,6 +131,7 @@ int a = 0; // js code
    No Indent
 
 ```md
+from md:
 1. one
    - a
 
@@ -147,6 +156,7 @@ int a = 0; // js code
 |1|2|3|4|
 
 ```md
+from md:
 |Table|Left|Center|Right|
 |-----|----|:----:|----:|
 |A|B|C|D|
@@ -159,6 +169,7 @@ int a = 0; // js code
 
 {% raw %}
 ```md
+from md (file `img.png` in assets/images/styling-syntax-test/):
 ![alt-text-of-sample-image]({{site.imgs}}{{page.id}}/img.png)
 ```
 {% endraw %}
@@ -172,6 +183,7 @@ int a = 0; // js code
 [google]: https://google.com
 
 ```
+from md:
 [In-line link (look bad in plain text)](https://google.com)
 
 [This is better][google]
@@ -186,6 +198,7 @@ int a = 0; // js code
 #### Header example2
 
 ```md
+from md:
 ### Header example
 
 #### Header example2
@@ -196,6 +209,7 @@ int a = 0; // js code
 Inline math $$f(x)=x^2$$
 
 ```md
+from md:
 Inline math $$f(x)=x^2$$
 ```
 
@@ -206,6 +220,7 @@ Long math
 $$\max\limits_\theta L_{\theta_0}(\theta)$$, subject to $$D_{KL}^{\rho_{\theta_0}}(\theta_0,\theta)\le\delta$$, where $$D_{KL}^\rho(\theta_1,\theta_2)=\mathbb{E}_{s\sim\rho}[D_{KL}(\pi_{\theta_1}(\cdot\vert s)\mid\mid\pi_{\theta_2}(\cdot\vert s))]$$
 
 ```latex
+from md:
 $$\max\limits_\theta L_{\theta_0}(\theta)$$, subject to $$D_{KL}^{\rho_{\theta_0}}(\theta_0,\theta)\le\delta$$, where $$D_{KL}^\rho(\theta_1,\theta_2)=\mathbb{E}_{s\sim\rho}[D_{KL}(\pi_{\theta_1}(\cdot\vert s)\mid\mid\pi_{\theta_2}(\cdot\vert s))]$$
 ```
 
@@ -216,6 +231,7 @@ Centered math:
 $$f(x)=x^2$$
 
 ```md
+from md:
 $$f(x)=x^2$$
 ```
 
@@ -226,6 +242,7 @@ $$f(x)=x^2$$
 |$$✔$$|$$\color{green} ✔$$|$$\color{red} ✘$$|
 
 ```latex
+from md:
 |Symbols|Using|Latex|
 |:-:|:-:|:-:|
 |$✔$|$\color{green} ✔$|$\color{red} ✘$|
@@ -240,6 +257,7 @@ G_t&=R_{t+1}+\gamma R_{t+2}+\gamma^2 R_{t+3}+\gamma^3 R_{t+4}+...\\
 \end{aligned}$$
 
 ```latex
+from md:
 $$\begin{aligned}
 G_t&=R_{t+1}+\gamma R_{t+2}+\gamma^2 R_{t+3}+\gamma^3 R_{t+4}+...\\
 &=R_{t+1}+\gamma(R_{t+2}+\gamma R_{t+3}+\gamma^2 R_{t+4})+...\\
@@ -254,6 +272,7 @@ Broken equation $61_{10}$, $111101_2$, $3D_{16}$
 Fixed equation $61\_{10}$, $111101\_2$, $3D\_{16}$
 
 ```md
+from md:
 Broken equation $61_{10}$, $111101_2$, $3D_{16}$
 
 Fixed equation $61\_{10}$, $111101\_2$, $3D\_{16}$
@@ -294,6 +313,7 @@ The author hasn't finished editing this post, and the content hasn't been proof-
 </div>
 
 ```md
+from md:
 <div class="notice--danger" markdown="1">
 
 🧻 **Preliminary Draft**
@@ -314,6 +334,7 @@ The author hasn't finished editing this post, and the content hasn't been proof-
 </div>
 
 ```md
+from md:
 <div class="notice--primary" markdown="1">
 
 📄 **Source**
@@ -336,6 +357,7 @@ Content
 </div>
 
 ```md
+from md:
 <div class="notice" markdown="1">
 
 ✏️ **Author's Note**
@@ -356,6 +378,7 @@ Content
 </div>
 
 ```md
+from md:
 <div class="notice--warning" markdown="1">
 
 ♾️ **Math Definition**
@@ -372,6 +395,7 @@ Content
 </div>
 
 ```md
+from md:
 <div class="notice--danger" markdown="1">
 
 ⚠️ **Common Mistakes**
@@ -388,6 +412,7 @@ Content
 </div>
 
 ```md
+from md:
 <div class="notice--success" markdown="1">
 
 ✔️ **Keynote**
@@ -404,6 +429,7 @@ Content
 </div>
 
 ```md
+from md:
 <div class="notice--info" markdown="1">
 
 🏷️ **Label**
@@ -422,6 +448,7 @@ Content
 </div>
 
 ```md
+from md:
 <div class="notice--info" markdown="1">
 
 📔 **Prerequisites**
@@ -438,6 +465,7 @@ Content
 </div></details>
 
 ```md
+from md:
 <details><summary>Click to Expand</summary><div markdown="1">
 **Yeah!** Markdown
 </div></details>
@@ -449,6 +477,7 @@ Content
 
 {% raw %}
 ```liquid
+from md:
 {{page.id}}
 ```
 {% endraw %}
