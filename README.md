@@ -1,6 +1,6 @@
 # [Minimal Mistakes Testing](https://github.com/trmwzm/min-mist-testing/)
 
-A minimum Jekyll blog template with some customization based on the [Minimal Mistakes Theme](https://mmistakes.github.io/minimal-mistakes/).
+A minimum Jekyll blog template with some customization (math, tables, UML diagrams, ...) based on the [Minimal Mistakes Theme](https://mmistakes.github.io/minimal-mistakes/).
 
 **[Click here to preview!](https://trmwzm.github.io/min-mist-testing/styling-syntax-test/)**
 
