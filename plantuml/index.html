@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>PlantUML Graphs | Markdown Sandbox</title>
+<meta name="description" content="PlantUML Graphs  1. Table Usage  For now, these extended features are provided:     Cells spanning multiple columns   Cells spanning multiple rows   Cells text align separately   Table header not required   Grouped table header rows or data rows   Noted that GitHub filters out style property, so the example displays with the obsolete align property. But in actual this plugin outputs style property with text-align CSS attribute.  Rowspan and Colspan  ^^ in a cell indicates it should be merged with the cell above. This feature is contributed by pmccloghrylaing.                   Stage       Direct Products       ATP Yields                       Glycolysis       2 ATP              |                         ^^       2 NADH       3–5 ATP                 Pyruvaye oxidation       2 NADH       5 ATP                 Citric acid cycle       2 ATP              |                         ^^       6 NADH       15 ATP                 ^^       2 FADH       3 ATP                 30–32 ATP        ||                             from md: |              Stage | Direct Products | ATP Yields | | -----------------: | --------------: | ---------: | |         Glycolysis |          2 ATP              || | ^^                 |          2 NADH |   3--5 ATP | | Pyruvaye oxidation |          2 NADH |      5 ATP | |  Citric acid cycle |          2 ATP              || | ^^                 |          6 NADH |     15 ATP | | ^^                 |          2 FADH |      3 ATP | |                               30--32 ATP        |||   Multiline  A backslash at end to join cell contents with the following lines. This feature is contributed by Lucas-C.                   :    Easy Multiline   : ||                                       Apple       Banana       Orange  \                 Apple       Banana       Orange  \                 Apple       Banana       Orange                 Apple       Banana       Orange  \                 Apple       Banana       Orange                 Apple       Banana       Orange             from md: | :    Easy Multiline   : ||| | :----- | :----- | :------ | | Apple  | Banana | Orange  \ | Apple  | Banana | Orange  \ | Apple  | Banana | Orange | Apple  | Banana | Orange  \ | Apple  | Banana | Orange  | | Apple  | Banana | Orange  |   Headerless  Table header can be eliminated.                   ♜               ♝       ♛       ♚       ♝       ♞       ♜                         ♟       ♟       ♟               ♟       ♟       ♟                 ♟               ♞                                                                 ♗                       ♟                                                                         ♙                                                                                 ♘                                 ♙       ♙       ♙       ♙               ♙       ♙       ♙                 ♖       ♘       ♗       ♕       ♔                       ♖             from md: |--|--|--|--|--|--|--|--| |♜| |♝|♛|♚|♝|♞|♜| | |♟|♟|♟| |♟|♟|♟| |♟| |♞| | | | | | | |♗| | |♟| | | | | | | | |♙| | | | | | | | | |♘| | | |♙|♙|♙|♙| |♙|♙|♙| |♖|♘|♗|♕|♔| | |♖|   Cell Alignment  Markdown table syntax use colons “:” for forcing column alignment. Therefore, here we also use it for forcing cell alignment.  Table cell can be set alignment separately.                   :        Fruits || Food       : ||                                       Apple       : Apple :       Apple      \                 Banana       Banana       Banana     \                 Orange       Orange       Orange                 :   Rowspan is 4    : |       How’s it?                         ^^    A. Peach         |       1. Fine :                         ^^    B. Orange        |       ^^ 2. Bad                         ^^    C. Banana        |       It’s OK!                     from md: | :        Fruits \|\| Food       : ||| | :--------- | :-------- | :--------  | | Apple      | : Apple : | Apple      \ | Banana     |   Banana  | Banana     \ | Orange     |   Orange  | Orange     | | :   Rowspan is 4    : || How's it?  | |^^    A. Peach         ||   1. Fine :| |^^    B. Orange        ||^^ 2. Bad   | |^^    C. Banana        ||  It's OK!  |   Cell Markdown  Sometimes we may need some abundant content (e.g., mathjax, image, video) in Markdown table Therefore, here we also make markown syntax possible inside a cell.                   :                   MathJax || Image                 : ||                                       Apple       : Apple :       Apple                          \                 Banana       Banana       Banana                         \                 Orange       Orange       Orange                 :     Rowspan is 4     : |       :        How’s it?           :                         ^^     A. Peach          |       1. ![example](https://jekyllrb.com/img/octojekyll.png &quot;An exemplary image&quot;)                         ^^     B. Orange         |       ^^ 2. $I = \int \rho R^{2} dV$                         ^^     C. Banana         |       **It’s OK!**                     from md: | :                   MathJax \|\| Image                 : ||| | :------------ | :-------- | :----------------------------- | | Apple         | : Apple : | Apple                          \ | Banana        | Banana    | Banana                         \ | Orange        | Orange    | Orange                         | | :     Rowspan is 4     : || :        How's it?           : | | ^^     A. Peach          ||    1. ![example][cell-image]   | | ^^     B. Orange         || ^^ 2. $I = \int \rho R^{2} dV$ | | ^^     C. Banana         || **It's OK!**                   |  [cell-image]: https://jekyllrb.com/img/octojekyll.png &quot;An exemplary image&quot;   Cell Inline Attributes  This feature is very useful for custom cell such as using inline style. (e.g., background, color, font) The idea and syntax comes from the Maruku package.    Following are some examples of attributes definitions (ALDs) and afterwards comes the syntax explanation:      from md: {:ref-name: #id .cls1 .cls2} {:second: ref-name #id-of-other title=&quot;hallo you&quot;} {:other: ref-name second}   An ALD line has the following structure:     a left brace, optionally preceded by up to three spaces,   followed by a colon, the id and another colon,   followed by attribute definitions (allowed characters are backslash-escaped closing braces or any character except a not escaped closing brace),   followed by a closing brace and optional spaces until the end of the line.   If there is more than one ALD with the same reference name, the attribute definitions of all the ALDs are processed like they are defined in one ALD.  An inline attribute list (IAL) is used to attach attributes to another element. Here are some examples for span IALs:    {: #id .cls1 .cls2}     from md: {: #id .cls1 .cls2} &lt;!-- #id &lt;=&gt; id=&quot;id&quot;, .cls1 .cls2 &lt;=&gt; class=&quot;cls1 cls2&quot; --&gt; {: ref-name title=&quot;hallo you&quot;} {: ref-name class='.cls3' .cls4}   Here is an example for custom table cell with IAL:                   :             Here’s an Inline Attribute Lists example                :|||                               :       :       :  &lt;div style=&quot;color: red;&quot;&gt; &lt; Normal HTML Block &gt; &lt;/div&gt; :||                 ^^       Red    {: .cls style=&quot;background: orange&quot; }                ||                 ^^ IALs       Green  {: #id style=&quot;background: green; color: white&quot; }    ||                 ^^       Blue   {: style=&quot;background: blue; color: white&quot; }         ||                 ^^       Black  {: color-style text-style }                         ||             from md: {:color-style: style=&quot;background: black;&quot;} {:color-style: style=&quot;color: white;&quot;} {:text-style: style=&quot;font-weight: 800; text-decoration: underline;&quot;}  |:             Here's an Inline Attribute Lists example                :|||| | ------- | ------------------ | -------------------- | ------------------ | |:       :|:  &lt;div style=&quot;color: red;&quot;&gt; &amp;lt; Normal HTML Block &gt; &lt;/div&gt; :||| | ^^      |   Red    {: .cls style=&quot;background: orange&quot; }                ||| | ^^ IALs |   Green  {: #id style=&quot;background: green; color: white&quot; }    ||| | ^^      |   Blue   {: style=&quot;background: blue; color: white&quot; }         ||| | ^^      |   Black  {: color-style text-style }                         |||   Additionally, here you can learn more details about IALs.  2. MathJax Usage  MathJax is an open-source JavaScript display engine for LaTeX, MathML, and AsciiMath notation that works in all modern browsers.  Some of the main features of MathJax include:     High-quality display of LaTeX, MathML, and AsciiMath notation in HTML pages   Supported in most browsers with no plug-ins, extra fonts, or special setup for the reader   Easy for authors, flexible for publishers, extensible for developers   Supports math accessibility, cut-and-paste interoperability, and other advanced functionality   Powerful API for integration with other web applications   2.1 Performance optimization  At building stage, the MathJax engine script will be added by automatically checking whether there is a math expression in the page, this feature can help you improve the page performance  on loading speed.  2.2 How to use?  Put your math expression within $…$    $ a * b = c ^ b $  from md: $ a * b = c ^ b $   $ 2^{\frac{n-1}{3}} $  from md: $ 2^{\frac{n-1}{3}} $   $ \int_a^b f(x)\,dx. $  from md: $ \int\_a^b f(x)\,dx. $   3. PlantUML Usage  PlantUML is a component that allows to quickly write:     sequence diagram,   use case diagram,   class diagram,   activity diagram,   component diagram,   state diagram,   object diagram   There are two ways to create a diagram in your Jekyll blog page:        from md: &lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c&quot;&gt;   or  from md: &lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c&quot;&gt;   A more complex activity diagram:        from md: &lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c&quot;&gt;   4. Mermaid Usage  Mermaid is a Javascript based diagramming and charting tool. It generates diagrams flowcharts and more, using markdown-inspired text for ease and speed.  It allows to quickly write:     flow chart,   pie chart,   sequence diagram,   class diagram,   state diagram,   entity relationship diagram,   user journey,   gantt   There are two ways to create a diagram in your Jekyll blog page:        from md: &lt;img class=&quot;mermaid&quot; src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9&quot;&gt;   or  from md: &lt;img class=&quot;mermaid&quot; src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9&quot;&gt;">
+
+
+  <meta name="author" content="T Michel">
+  
+  <meta property="article:author" content="T Michel">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Markdown Sandbox">
+<meta property="og:title" content="PlantUML Graphs">
+<meta property="og:url" content="/plantuml/">
+
+
+  <meta property="og:description" content="PlantUML Graphs  1. Table Usage  For now, these extended features are provided:     Cells spanning multiple columns   Cells spanning multiple rows   Cells text align separately   Table header not required   Grouped table header rows or data rows   Noted that GitHub filters out style property, so the example displays with the obsolete align property. But in actual this plugin outputs style property with text-align CSS attribute.  Rowspan and Colspan  ^^ in a cell indicates it should be merged with the cell above. This feature is contributed by pmccloghrylaing.                   Stage       Direct Products       ATP Yields                       Glycolysis       2 ATP              |                         ^^       2 NADH       3–5 ATP                 Pyruvaye oxidation       2 NADH       5 ATP                 Citric acid cycle       2 ATP              |                         ^^       6 NADH       15 ATP                 ^^       2 FADH       3 ATP                 30–32 ATP        ||                             from md: |              Stage | Direct Products | ATP Yields | | -----------------: | --------------: | ---------: | |         Glycolysis |          2 ATP              || | ^^                 |          2 NADH |   3--5 ATP | | Pyruvaye oxidation |          2 NADH |      5 ATP | |  Citric acid cycle |          2 ATP              || | ^^                 |          6 NADH |     15 ATP | | ^^                 |          2 FADH |      3 ATP | |                               30--32 ATP        |||   Multiline  A backslash at end to join cell contents with the following lines. This feature is contributed by Lucas-C.                   :    Easy Multiline   : ||                                       Apple       Banana       Orange  \                 Apple       Banana       Orange  \                 Apple       Banana       Orange                 Apple       Banana       Orange  \                 Apple       Banana       Orange                 Apple       Banana       Orange             from md: | :    Easy Multiline   : ||| | :----- | :----- | :------ | | Apple  | Banana | Orange  \ | Apple  | Banana | Orange  \ | Apple  | Banana | Orange | Apple  | Banana | Orange  \ | Apple  | Banana | Orange  | | Apple  | Banana | Orange  |   Headerless  Table header can be eliminated.                   ♜               ♝       ♛       ♚       ♝       ♞       ♜                         ♟       ♟       ♟               ♟       ♟       ♟                 ♟               ♞                                                                 ♗                       ♟                                                                         ♙                                                                                 ♘                                 ♙       ♙       ♙       ♙               ♙       ♙       ♙                 ♖       ♘       ♗       ♕       ♔                       ♖             from md: |--|--|--|--|--|--|--|--| |♜| |♝|♛|♚|♝|♞|♜| | |♟|♟|♟| |♟|♟|♟| |♟| |♞| | | | | | | |♗| | |♟| | | | | | | | |♙| | | | | | | | | |♘| | | |♙|♙|♙|♙| |♙|♙|♙| |♖|♘|♗|♕|♔| | |♖|   Cell Alignment  Markdown table syntax use colons “:” for forcing column alignment. Therefore, here we also use it for forcing cell alignment.  Table cell can be set alignment separately.                   :        Fruits || Food       : ||                                       Apple       : Apple :       Apple      \                 Banana       Banana       Banana     \                 Orange       Orange       Orange                 :   Rowspan is 4    : |       How’s it?                         ^^    A. Peach         |       1. Fine :                         ^^    B. Orange        |       ^^ 2. Bad                         ^^    C. Banana        |       It’s OK!                     from md: | :        Fruits \|\| Food       : ||| | :--------- | :-------- | :--------  | | Apple      | : Apple : | Apple      \ | Banana     |   Banana  | Banana     \ | Orange     |   Orange  | Orange     | | :   Rowspan is 4    : || How's it?  | |^^    A. Peach         ||   1. Fine :| |^^    B. Orange        ||^^ 2. Bad   | |^^    C. Banana        ||  It's OK!  |   Cell Markdown  Sometimes we may need some abundant content (e.g., mathjax, image, video) in Markdown table Therefore, here we also make markown syntax possible inside a cell.                   :                   MathJax || Image                 : ||                                       Apple       : Apple :       Apple                          \                 Banana       Banana       Banana                         \                 Orange       Orange       Orange                 :     Rowspan is 4     : |       :        How’s it?           :                         ^^     A. Peach          |       1. ![example](https://jekyllrb.com/img/octojekyll.png &quot;An exemplary image&quot;)                         ^^     B. Orange         |       ^^ 2. $I = \int \rho R^{2} dV$                         ^^     C. Banana         |       **It’s OK!**                     from md: | :                   MathJax \|\| Image                 : ||| | :------------ | :-------- | :----------------------------- | | Apple         | : Apple : | Apple                          \ | Banana        | Banana    | Banana                         \ | Orange        | Orange    | Orange                         | | :     Rowspan is 4     : || :        How's it?           : | | ^^     A. Peach          ||    1. ![example][cell-image]   | | ^^     B. Orange         || ^^ 2. $I = \int \rho R^{2} dV$ | | ^^     C. Banana         || **It's OK!**                   |  [cell-image]: https://jekyllrb.com/img/octojekyll.png &quot;An exemplary image&quot;   Cell Inline Attributes  This feature is very useful for custom cell such as using inline style. (e.g., background, color, font) The idea and syntax comes from the Maruku package.    Following are some examples of attributes definitions (ALDs) and afterwards comes the syntax explanation:      from md: {:ref-name: #id .cls1 .cls2} {:second: ref-name #id-of-other title=&quot;hallo you&quot;} {:other: ref-name second}   An ALD line has the following structure:     a left brace, optionally preceded by up to three spaces,   followed by a colon, the id and another colon,   followed by attribute definitions (allowed characters are backslash-escaped closing braces or any character except a not escaped closing brace),   followed by a closing brace and optional spaces until the end of the line.   If there is more than one ALD with the same reference name, the attribute definitions of all the ALDs are processed like they are defined in one ALD.  An inline attribute list (IAL) is used to attach attributes to another element. Here are some examples for span IALs:    {: #id .cls1 .cls2}     from md: {: #id .cls1 .cls2} &lt;!-- #id &lt;=&gt; id=&quot;id&quot;, .cls1 .cls2 &lt;=&gt; class=&quot;cls1 cls2&quot; --&gt; {: ref-name title=&quot;hallo you&quot;} {: ref-name class='.cls3' .cls4}   Here is an example for custom table cell with IAL:                   :             Here’s an Inline Attribute Lists example                :|||                               :       :       :  &lt;div style=&quot;color: red;&quot;&gt; &lt; Normal HTML Block &gt; &lt;/div&gt; :||                 ^^       Red    {: .cls style=&quot;background: orange&quot; }                ||                 ^^ IALs       Green  {: #id style=&quot;background: green; color: white&quot; }    ||                 ^^       Blue   {: style=&quot;background: blue; color: white&quot; }         ||                 ^^       Black  {: color-style text-style }                         ||             from md: {:color-style: style=&quot;background: black;&quot;} {:color-style: style=&quot;color: white;&quot;} {:text-style: style=&quot;font-weight: 800; text-decoration: underline;&quot;}  |:             Here's an Inline Attribute Lists example                :|||| | ------- | ------------------ | -------------------- | ------------------ | |:       :|:  &lt;div style=&quot;color: red;&quot;&gt; &amp;lt; Normal HTML Block &gt; &lt;/div&gt; :||| | ^^      |   Red    {: .cls style=&quot;background: orange&quot; }                ||| | ^^ IALs |   Green  {: #id style=&quot;background: green; color: white&quot; }    ||| | ^^      |   Blue   {: style=&quot;background: blue; color: white&quot; }         ||| | ^^      |   Black  {: color-style text-style }                         |||   Additionally, here you can learn more details about IALs.  2. MathJax Usage  MathJax is an open-source JavaScript display engine for LaTeX, MathML, and AsciiMath notation that works in all modern browsers.  Some of the main features of MathJax include:     High-quality display of LaTeX, MathML, and AsciiMath notation in HTML pages   Supported in most browsers with no plug-ins, extra fonts, or special setup for the reader   Easy for authors, flexible for publishers, extensible for developers   Supports math accessibility, cut-and-paste interoperability, and other advanced functionality   Powerful API for integration with other web applications   2.1 Performance optimization  At building stage, the MathJax engine script will be added by automatically checking whether there is a math expression in the page, this feature can help you improve the page performance  on loading speed.  2.2 How to use?  Put your math expression within $…$    $ a * b = c ^ b $  from md: $ a * b = c ^ b $   $ 2^{\frac{n-1}{3}} $  from md: $ 2^{\frac{n-1}{3}} $   $ \int_a^b f(x)\,dx. $  from md: $ \int\_a^b f(x)\,dx. $   3. PlantUML Usage  PlantUML is a component that allows to quickly write:     sequence diagram,   use case diagram,   class diagram,   activity diagram,   component diagram,   state diagram,   object diagram   There are two ways to create a diagram in your Jekyll blog page:        from md: &lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c&quot;&gt;   or  from md: &lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c&quot;&gt;   A more complex activity diagram:        from md: &lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c&quot;&gt;   4. Mermaid Usage  Mermaid is a Javascript based diagramming and charting tool. It generates diagrams flowcharts and more, using markdown-inspired text for ease and speed.  It allows to quickly write:     flow chart,   pie chart,   sequence diagram,   class diagram,   state diagram,   entity relationship diagram,   user journey,   gantt   There are two ways to create a diagram in your Jekyll blog page:        from md: &lt;img class=&quot;mermaid&quot; src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9&quot;&gt;   or  from md: &lt;img class=&quot;mermaid&quot; src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9&quot;&gt;">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-05T00:00:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2023-05-03T00:00:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/plantuml/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "what name?",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Markdown Sandbox Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    
+  <!--
+https://github.com/goodfeli/dlbook_notation/blob/master/math_commands.tex
+https://github.com/goodfeli/dlbook_notation/blob/master/notation.tex
+-->
+
+<script>MathJax={"tex":{"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"svg":{"fontCache":"global"}}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div style="visibility: collapse">
+$$
+\def\bm#1{\boldsymbol{#1}}
+
+%%%%% NEW MATH DEFINITIONS %%%%%
+
+<!--
+% Mark sections of captions for referring to divisions of figures
+\newcommand{\figleft}{{\em (Left)}}
+\newcommand{\figcenter}{{\em (Center)}}
+\newcommand{\figright}{{\em (Right)}}
+\newcommand{\figtop}{{\em (Top)}}
+\newcommand{\figbottom}{{\em (Bottom)}}
+\newcommand{\captiona}{{\em (a)}}
+\newcommand{\captionb}{{\em (b)}}
+\newcommand{\captionc}{{\em (c)}}
+\newcommand{\captiond}{{\em (d)}}
+-->
+
+% Highlight a newly defined term
+\newcommand{\newterm}[1]{{\bf #1}}
+
+<!--
+% Figure reference, lower-case.
+\def\figref#1{figure~\ref{#1}}
+% Figure reference, capital. For start of sentence
+\def\Figref#1{Figure~\ref{#1}}
+\def\twofigref#1#2{figures \ref{#1} and \ref{#2}}
+\def\quadfigref#1#2#3#4{figures \ref{#1}, \ref{#2}, \ref{#3} and \ref{#4}}
+% Section reference, lower-case.
+\def\secref#1{section~\ref{#1}}
+% Section reference, capital.
+\def\Secref#1{Section~\ref{#1}}
+% Reference to two sections.
+\def\twosecrefs#1#2{sections \ref{#1} and \ref{#2}}
+% Reference to three sections.
+\def\secrefs#1#2#3{sections \ref{#1}, \ref{#2} and \ref{#3}}
+% Reference to an equation, lower-case.
+\def\eqref#1{equation~\ref{#1}}
+% Reference to an equation, upper case
+\def\Eqref#1{Equation~\ref{#1}}
+% A raw reference to an equation---avoid using if possible
+\def\plaineqref#1{\ref{#1}}
+% Reference to a chapter, lower-case.
+\def\chapref#1{chapter~\ref{#1}}
+% Reference to an equation, upper case.
+\def\Chapref#1{Chapter~\ref{#1}}
+% Reference to a range of chapters
+\def\rangechapref#1#2{chapters\ref{#1}--\ref{#2}}
+% Reference to an algorithm, lower-case.
+\def\algref#1{algorithm~\ref{#1}}
+% Reference to an algorithm, upper case.
+\def\Algref#1{Algorithm~\ref{#1}}
+\def\twoalgref#1#2{algorithms \ref{#1} and \ref{#2}}
+\def\Twoalgref#1#2{Algorithms \ref{#1} and \ref{#2}}
+% Reference to a part, lower case
+\def\partref#1{part~\ref{#1}}
+% Reference to a part, upper case
+\def\Partref#1{Part~\ref{#1}}
+\def\twopartref#1#2{parts \ref{#1} and \ref{#2}}
+-->
+
+\def\ceil#1{\lceil #1 \rceil}
+\def\floor#1{\lfloor #1 \rfloor}
+\def\1{\bm{1}}
+\newcommand{\train}{\mathcal{D}}
+\newcommand{\valid}{\mathcal{D_{\mathrm{valid}}}}
+\newcommand{\test}{\mathcal{D_{\mathrm{test}}}}
+
+\def\eps{{\epsilon}}
+
+
+% Random variables
+\def\reta{{\textnormal{$\eta$}}}
+\def\ra{{\textnormal{a}}}
+\def\rb{{\textnormal{b}}}
+\def\rc{{\textnormal{c}}}
+\def\rd{{\textnormal{d}}}
+\def\re{{\textnormal{e}}}
+\def\rf{{\textnormal{f}}}
+\def\rg{{\textnormal{g}}}
+\def\rh{{\textnormal{h}}}
+\def\ri{{\textnormal{i}}}
+\def\rj{{\textnormal{j}}}
+\def\rk{{\textnormal{k}}}
+\def\rl{{\textnormal{l}}}
+% rm is already a command, just don't name any random variables m
+\def\rn{{\textnormal{n}}}
+\def\ro{{\textnormal{o}}}
+\def\rp{{\textnormal{p}}}
+\def\rq{{\textnormal{q}}}
+\def\rr{{\textnormal{r}}}
+\def\rs{{\textnormal{s}}}
+\def\rt{{\textnormal{t}}}
+\def\ru{{\textnormal{u}}}
+\def\rv{{\textnormal{v}}}
+\def\rw{{\textnormal{w}}}
+\def\rx{{\textnormal{x}}}
+\def\ry{{\textnormal{y}}}
+\def\rz{{\textnormal{z}}}
+
+% Random vectors
+\def\rvepsilon{{\mathbf{\epsilon}}}
+\def\rvtheta{{\mathbf{\theta}}}
+\def\rva{{\mathbf{a}}}
+\def\rvb{{\mathbf{b}}}
+\def\rvc{{\mathbf{c}}}
+\def\rvd{{\mathbf{d}}}
+\def\rve{{\mathbf{e}}}
+\def\rvf{{\mathbf{f}}}
+\def\rvg{{\mathbf{g}}}
+\def\rvh{{\mathbf{h}}}
+\def\rvu{{\mathbf{i}}}
+\def\rvj{{\mathbf{j}}}
+\def\rvk{{\mathbf{k}}}
+\def\rvl{{\mathbf{l}}}
+\def\rvm{{\mathbf{m}}}
+\def\rvn{{\mathbf{n}}}
+\def\rvo{{\mathbf{o}}}
+\def\rvp{{\mathbf{p}}}
+\def\rvq{{\mathbf{q}}}
+\def\rvr{{\mathbf{r}}}
+\def\rvs{{\mathbf{s}}}
+\def\rvt{{\mathbf{t}}}
+\def\rvu{{\mathbf{u}}}
+\def\rvv{{\mathbf{v}}}
+\def\rvw{{\mathbf{w}}}
+\def\rvx{{\mathbf{x}}}
+\def\rvy{{\mathbf{y}}}
+\def\rvz{{\mathbf{z}}}
+
+% Elements of random vectors
+\def\erva{{\textnormal{a}}}
+\def\ervb{{\textnormal{b}}}
+\def\ervc{{\textnormal{c}}}
+\def\ervd{{\textnormal{d}}}
+\def\erve{{\textnormal{e}}}
+\def\ervf{{\textnormal{f}}}
+\def\ervg{{\textnormal{g}}}
+\def\ervh{{\textnormal{h}}}
+\def\ervi{{\textnormal{i}}}
+\def\ervj{{\textnormal{j}}}
+\def\ervk{{\textnormal{k}}}
+\def\ervl{{\textnormal{l}}}
+\def\ervm{{\textnormal{m}}}
+\def\ervn{{\textnormal{n}}}
+\def\ervo{{\textnormal{o}}}
+\def\ervp{{\textnormal{p}}}
+\def\ervq{{\textnormal{q}}}
+\def\ervr{{\textnormal{r}}}
+\def\ervs{{\textnormal{s}}}
+\def\ervt{{\textnormal{t}}}
+\def\ervu{{\textnormal{u}}}
+\def\ervv{{\textnormal{v}}}
+\def\ervw{{\textnormal{w}}}
+\def\ervx{{\textnormal{x}}}
+\def\ervy{{\textnormal{y}}}
+\def\ervz{{\textnormal{z}}}
+
+% Random matrices
+\def\rmA{{\mathbf{A}}}
+\def\rmB{{\mathbf{B}}}
+\def\rmC{{\mathbf{C}}}
+\def\rmD{{\mathbf{D}}}
+\def\rmE{{\mathbf{E}}}
+\def\rmF{{\mathbf{F}}}
+\def\rmG{{\mathbf{G}}}
+\def\rmH{{\mathbf{H}}}
+\def\rmI{{\mathbf{I}}}
+\def\rmJ{{\mathbf{J}}}
+\def\rmK{{\mathbf{K}}}
+\def\rmL{{\mathbf{L}}}
+\def\rmM{{\mathbf{M}}}
+\def\rmN{{\mathbf{N}}}
+\def\rmO{{\mathbf{O}}}
+\def\rmP{{\mathbf{P}}}
+\def\rmQ{{\mathbf{Q}}}
+\def\rmR{{\mathbf{R}}}
+\def\rmS{{\mathbf{S}}}
+\def\rmT{{\mathbf{T}}}
+\def\rmU{{\mathbf{U}}}
+\def\rmV{{\mathbf{V}}}
+\def\rmW{{\mathbf{W}}}
+\def\rmX{{\mathbf{X}}}
+\def\rmY{{\mathbf{Y}}}
+\def\rmZ{{\mathbf{Z}}}
+
+% Elements of random matrices
+\def\ermA{{\textnormal{A}}}
+\def\ermB{{\textnormal{B}}}
+\def\ermC{{\textnormal{C}}}
+\def\ermD{{\textnormal{D}}}
+\def\ermE{{\textnormal{E}}}
+\def\ermF{{\textnormal{F}}}
+\def\ermG{{\textnormal{G}}}
+\def\ermH{{\textnormal{H}}}
+\def\ermI{{\textnormal{I}}}
+\def\ermJ{{\textnormal{J}}}
+\def\ermK{{\textnormal{K}}}
+\def\ermL{{\textnormal{L}}}
+\def\ermM{{\textnormal{M}}}
+\def\ermN{{\textnormal{N}}}
+\def\ermO{{\textnormal{O}}}
+\def\ermP{{\textnormal{P}}}
+\def\ermQ{{\textnormal{Q}}}
+\def\ermR{{\textnormal{R}}}
+\def\ermS{{\textnormal{S}}}
+\def\ermT{{\textnormal{T}}}
+\def\ermU{{\textnormal{U}}}
+\def\ermV{{\textnormal{V}}}
+\def\ermW{{\textnormal{W}}}
+\def\ermX{{\textnormal{X}}}
+\def\ermY{{\textnormal{Y}}}
+\def\ermZ{{\textnormal{Z}}}
+
+% Vectors
+\def\vzero{{\bm{0}}}
+\def\vone{{\bm{1}}}
+\def\vmu{{\bm{\mu}}}
+\def\vtheta{{\bm{\theta}}}
+\def\va{{\bm{a}}}
+\def\vb{{\bm{b}}}
+\def\vc{{\bm{c}}}
+\def\vd{{\bm{d}}}
+\def\ve{{\bm{e}}}
+\def\vf{{\bm{f}}}
+\def\vg{{\bm{g}}}
+\def\vh{{\bm{h}}}
+\def\vi{{\bm{i}}}
+\def\vj{{\bm{j}}}
+\def\vk{{\bm{k}}}
+\def\vl{{\bm{l}}}
+\def\vm{{\bm{m}}}
+\def\vn{{\bm{n}}}
+\def\vo{{\bm{o}}}
+\def\vp{{\bm{p}}}
+\def\vq{{\bm{q}}}
+\def\vr{{\bm{r}}}
+\def\vs{{\bm{s}}}
+\def\vt{{\bm{t}}}
+\def\vu{{\bm{u}}}
+\def\vv{{\bm{v}}}
+\def\vw{{\bm{w}}}
+\def\vx{{\bm{x}}}
+\def\vy{{\bm{y}}}
+\def\vz{{\bm{z}}}
+
+% Elements of vectors
+\def\evalpha{{\alpha}}
+\def\evbeta{{\beta}}
+\def\evepsilon{{\epsilon}}
+\def\evlambda{{\lambda}}
+\def\evomega{{\omega}}
+\def\evmu{{\mu}}
+\def\evpsi{{\psi}}
+\def\evsigma{{\sigma}}
+\def\evtheta{{\theta}}
+\def\eva{{a}}
+\def\evb{{b}}
+\def\evc{{c}}
+\def\evd{{d}}
+\def\eve{{e}}
+\def\evf{{f}}
+\def\evg{{g}}
+\def\evh{{h}}
+\def\evi{{i}}
+\def\evj{{j}}
+\def\evk{{k}}
+\def\evl{{l}}
+\def\evm{{m}}
+\def\evn{{n}}
+\def\evo{{o}}
+\def\evp{{p}}
+\def\evq{{q}}
+\def\evr{{r}}
+\def\evs{{s}}
+\def\evt{{t}}
+\def\evu{{u}}
+\def\evv{{v}}
+\def\evw{{w}}
+\def\evx{{x}}
+\def\evy{{y}}
+\def\evz{{z}}
+
+% Matrix
+\def\mA{{\bm{A}}}
+\def\mB{{\bm{B}}}
+\def\mC{{\bm{C}}}
+\def\mD{{\bm{D}}}
+\def\mE{{\bm{E}}}
+\def\mF{{\bm{F}}}
+\def\mG{{\bm{G}}}
+\def\mH{{\bm{H}}}
+\def\mI{{\bm{I}}}
+\def\mJ{{\bm{J}}}
+\def\mK{{\bm{K}}}
+\def\mL{{\bm{L}}}
+\def\mM{{\bm{M}}}
+\def\mN{{\bm{N}}}
+\def\mO{{\bm{O}}}
+\def\mP{{\bm{P}}}
+\def\mQ{{\bm{Q}}}
+\def\mR{{\bm{R}}}
+\def\mS{{\bm{S}}}
+\def\mT{{\bm{T}}}
+\def\mU{{\bm{U}}}
+\def\mV{{\bm{V}}}
+\def\mW{{\bm{W}}}
+\def\mX{{\bm{X}}}
+\def\mY{{\bm{Y}}}
+\def\mZ{{\bm{Z}}}
+\def\mBeta{{\bm{\beta}}}
+\def\mPhi{{\bm{\Phi}}}
+\def\mLambda{{\bm{\Lambda}}}
+\def\mSigma{{\bm{\Sigma}}}
+
+% Tensor
+<!--
+\DeclareMathAlphabet{\mathsfit}{\encodingdefault}{\sfdefault}{m}{sl}
+\SetMathAlphabet{\mathsfit}{bold}{\encodingdefault}{\sfdefault}{bx}{n}
+\newcommand{\tens}[1]{\bm{\mathsfit{#1}}}
+-->
+\newcommand{\tens}[1]{\mathsf{#1}}
+\def\tA{{\tens{A}}}
+\def\tB{{\tens{B}}}
+\def\tC{{\tens{C}}}
+\def\tD{{\tens{D}}}
+\def\tE{{\tens{E}}}
+\def\tF{{\tens{F}}}
+\def\tG{{\tens{G}}}
+\def\tH{{\tens{H}}}
+\def\tI{{\tens{I}}}
+\def\tJ{{\tens{J}}}
+\def\tK{{\tens{K}}}
+\def\tL{{\tens{L}}}
+\def\tM{{\tens{M}}}
+\def\tN{{\tens{N}}}
+\def\tO{{\tens{O}}}
+\def\tP{{\tens{P}}}
+\def\tQ{{\tens{Q}}}
+\def\tR{{\tens{R}}}
+\def\tS{{\tens{S}}}
+\def\tT{{\tens{T}}}
+\def\tU{{\tens{U}}}
+\def\tV{{\tens{V}}}
+\def\tW{{\tens{W}}}
+\def\tX{{\tens{X}}}
+\def\tY{{\tens{Y}}}
+\def\tZ{{\tens{Z}}}
+
+
+% Graph
+\def\gA{{\mathcal{A}}}
+\def\gB{{\mathcal{B}}}
+\def\gC{{\mathcal{C}}}
+\def\gD{{\mathcal{D}}}
+\def\gE{{\mathcal{E}}}
+\def\gF{{\mathcal{F}}}
+\def\gG{{\mathcal{G}}}
+\def\gH{{\mathcal{H}}}
+\def\gI{{\mathcal{I}}}
+\def\gJ{{\mathcal{J}}}
+\def\gK{{\mathcal{K}}}
+\def\gL{{\mathcal{L}}}
+\def\gM{{\mathcal{M}}}
+\def\gN{{\mathcal{N}}}
+\def\gO{{\mathcal{O}}}
+\def\gP{{\mathcal{P}}}
+\def\gQ{{\mathcal{Q}}}
+\def\gR{{\mathcal{R}}}
+\def\gS{{\mathcal{S}}}
+\def\gT{{\mathcal{T}}}
+\def\gU{{\mathcal{U}}}
+\def\gV{{\mathcal{V}}}
+\def\gW{{\mathcal{W}}}
+\def\gX{{\mathcal{X}}}
+\def\gY{{\mathcal{Y}}}
+\def\gZ{{\mathcal{Z}}}
+
+% Sets
+\def\sA{{\mathbb{A}}}
+\def\sB{{\mathbb{B}}}
+\def\sC{{\mathbb{C}}}
+\def\sD{{\mathbb{D}}}
+% Don't use a set called E, because this would be the same as our symbol
+% for expectation.
+\def\sF{{\mathbb{F}}}
+\def\sG{{\mathbb{G}}}
+\def\sH{{\mathbb{H}}}
+\def\sI{{\mathbb{I}}}
+\def\sJ{{\mathbb{J}}}
+\def\sK{{\mathbb{K}}}
+\def\sL{{\mathbb{L}}}
+\def\sM{{\mathbb{M}}}
+\def\sN{{\mathbb{N}}}
+\def\sO{{\mathbb{O}}}
+\def\sP{{\mathbb{P}}}
+\def\sQ{{\mathbb{Q}}}
+\def\sR{{\mathbb{R}}}
+\def\sS{{\mathbb{S}}}
+\def\sT{{\mathbb{T}}}
+\def\sU{{\mathbb{U}}}
+\def\sV{{\mathbb{V}}}
+\def\sW{{\mathbb{W}}}
+\def\sX{{\mathbb{X}}}
+\def\sY{{\mathbb{Y}}}
+\def\sZ{{\mathbb{Z}}}
+
+% Entries of a matrix
+\def\emLambda{{\Lambda}}
+\def\emA{{A}}
+\def\emB{{B}}
+\def\emC{{C}}
+\def\emD{{D}}
+\def\emE{{E}}
+\def\emF{{F}}
+\def\emG{{G}}
+\def\emH{{H}}
+\def\emI{{I}}
+\def\emJ{{J}}
+\def\emK{{K}}
+\def\emL{{L}}
+\def\emM{{M}}
+\def\emN{{N}}
+\def\emO{{O}}
+\def\emP{{P}}
+\def\emQ{{Q}}
+\def\emR{{R}}
+\def\emS{{S}}
+\def\emT{{T}}
+\def\emU{{U}}
+\def\emV{{V}}
+\def\emW{{W}}
+\def\emX{{X}}
+\def\emY{{Y}}
+\def\emZ{{Z}}
+\def\emSigma{{\Sigma}}
+
+% entries of a tensor
+% Same font as tensor, without \bm wrapper
+\newcommand{\etens}[1]{\mathsfit{#1}}
+\def\etLambda{{\etens{\Lambda}}}
+\def\etA{{\etens{A}}}
+\def\etB{{\etens{B}}}
+\def\etC{{\etens{C}}}
+\def\etD{{\etens{D}}}
+\def\etE{{\etens{E}}}
+\def\etF{{\etens{F}}}
+\def\etG{{\etens{G}}}
+\def\etH{{\etens{H}}}
+\def\etI{{\etens{I}}}
+\def\etJ{{\etens{J}}}
+\def\etK{{\etens{K}}}
+\def\etL{{\etens{L}}}
+\def\etM{{\etens{M}}}
+\def\etN{{\etens{N}}}
+\def\etO{{\etens{O}}}
+\def\etP{{\etens{P}}}
+\def\etQ{{\etens{Q}}}
+\def\etR{{\etens{R}}}
+\def\etS{{\etens{S}}}
+\def\etT{{\etens{T}}}
+\def\etU{{\etens{U}}}
+\def\etV{{\etens{V}}}
+\def\etW{{\etens{W}}}
+\def\etX{{\etens{X}}}
+\def\etY{{\etens{Y}}}
+\def\etZ{{\etens{Z}}}
+
+% The true underlying data generating distribution
+\newcommand{\pdata}{p_{\rm{data}}}
+% The empirical distribution defined by the training set
+\newcommand{\ptrain}{\hat{p}_{\rm{data}}}
+\newcommand{\Ptrain}{\hat{P}_{\rm{data}}}
+% The model distribution
+\newcommand{\pmodel}{p_{\rm{model}}}
+\newcommand{\Pmodel}{P_{\rm{model}}}
+\newcommand{\ptildemodel}{\tilde{p}_{\rm{model}}}
+% Stochastic autoencoder distributions
+\newcommand{\pencode}{p_{\rm{encoder}}}
+\newcommand{\pdecode}{p_{\rm{decoder}}}
+\newcommand{\precons}{p_{\rm{reconstruct}}}
+
+\newcommand{\laplace}{\mathrm{Laplace}} % Laplace distribution
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Ls}{\mathcal{L}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\emp}{\tilde{p}}
+\newcommand{\lr}{\alpha}
+\newcommand{\reg}{\lambda}
+\newcommand{\rect}{\mathrm{rectifier}}
+\newcommand{\softmax}{\mathrm{softmax}}
+\newcommand{\sigmoid}{\sigma}
+\newcommand{\softplus}{\zeta}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\standarderror}{\mathrm{SE}}
+\newcommand{\Cov}{\mathrm{Cov}}
+% Wolfram Mathworld says $L^2$ is for function spaces and $\ell^2$ is for vectors
+% But then they seem to use $L^2$ for vectors throughout the site, and so does
+% wikipedia.
+\newcommand{\normlzero}{L^0}
+\newcommand{\normlone}{L^1}
+\newcommand{\normltwo}{L^2}
+\newcommand{\normlp}{L^p}
+\newcommand{\normmax}{L^\infty}
+
+\newcommand{\parents}{Pa} % See usage in notation.tex. Chosen to match Daphne's book.
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Tr}{Tr}
+\let\ab\allowbreak
+
+$$
+
+</div>
+
+  
+
+  
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Markdown Sandbox
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/sitemap/">Sitemap</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">T Michel</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Author bio</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Somewhere</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="PlantUML Graphs">
+    <meta itemprop="description" content="PlantUML Graphs1. Table UsageFor now, these extended features are provided:  Cells spanning multiple columns  Cells spanning multiple rows  Cells text align separately  Table header not required  Grouped table header rows or data rowsNoted that GitHub filters out style property, so the example displays with the obsolete align property. But in actual this plugin outputs style property with text-align CSS attribute.Rowspan and Colspan^^ in a cell indicates it should be merged with the cell above.This feature is contributed by pmccloghrylaing.            Stage      Direct Products      ATP Yields                  Glycolysis      2 ATP              |                     ^^      2 NADH      3–5 ATP              Pyruvaye oxidation      2 NADH      5 ATP              Citric acid cycle      2 ATP              |                     ^^      6 NADH      15 ATP              ^^      2 FADH      3 ATP              30–32 ATP        ||                    from md:|              Stage | Direct Products | ATP Yields || -----------------: | --------------: | ---------: ||         Glycolysis |          2 ATP              ||| ^^                 |          2 NADH |   3--5 ATP || Pyruvaye oxidation |          2 NADH |      5 ATP ||  Citric acid cycle |          2 ATP              ||| ^^                 |          6 NADH |     15 ATP || ^^                 |          2 FADH |      3 ATP ||                               30--32 ATP        |||MultilineA backslash at end to join cell contents with the following lines.This feature is contributed by Lucas-C.            :    Easy Multiline   : ||                                Apple      Banana      Orange  \              Apple      Banana      Orange  \              Apple      Banana      Orange              Apple      Banana      Orange  \              Apple      Banana      Orange              Apple      Banana      Orange      from md:| :    Easy Multiline   : |||| :----- | :----- | :------ || Apple  | Banana | Orange  \| Apple  | Banana | Orange  \| Apple  | Banana | Orange| Apple  | Banana | Orange  \| Apple  | Banana | Orange  || Apple  | Banana | Orange  |HeaderlessTable header can be eliminated.            ♜             ♝      ♛      ♚      ♝      ♞      ♜                     ♟      ♟      ♟             ♟      ♟      ♟              ♟             ♞                                                        ♗                    ♟                                                               ♙                                                                      ♘                            ♙      ♙      ♙      ♙             ♙      ♙      ♙              ♖      ♘      ♗      ♕      ♔                    ♖      from md:|--|--|--|--|--|--|--|--||♜| |♝|♛|♚|♝|♞|♜|| |♟|♟|♟| |♟|♟|♟||♟| |♞| | | | | || |♗| | |♟| | | || | | | |♙| | | || | | | | |♘| | ||♙|♙|♙|♙| |♙|♙|♙||♖|♘|♗|♕|♔| | |♖|Cell AlignmentMarkdown table syntax use colons “:” for forcing column alignment.Therefore, here we also use it for forcing cell alignment.Table cell can be set alignment separately.            :        Fruits || Food       : ||                                Apple      : Apple :      Apple      \              Banana      Banana      Banana     \              Orange      Orange      Orange              :   Rowspan is 4    : |      How’s it?                     ^^    A. Peach         |      1. Fine :                     ^^    B. Orange        |      ^^ 2. Bad                     ^^    C. Banana        |      It’s OK!             from md:| :        Fruits \|\| Food       : |||| :--------- | :-------- | :--------  || Apple      | : Apple : | Apple      \| Banana     |   Banana  | Banana     \| Orange     |   Orange  | Orange     || :   Rowspan is 4    : || How's it?  ||^^    A. Peach         ||   1. Fine :||^^    B. Orange        ||^^ 2. Bad   ||^^    C. Banana        ||  It's OK!  |Cell MarkdownSometimes we may need some abundant content (e.g., mathjax, image, video) in Markdown tableTherefore, here we also make markown syntax possible inside a cell.            :                   MathJax || Image                 : ||                                Apple      : Apple :      Apple                          \              Banana      Banana      Banana                         \              Orange      Orange      Orange              :     Rowspan is 4     : |      :        How’s it?           :                     ^^     A. Peach          |      1. ![example](https://jekyllrb.com/img/octojekyll.png &quot;An exemplary image&quot;)                     ^^     B. Orange         |      ^^ 2. $I = \int \rho R^{2} dV$                     ^^     C. Banana         |      **It’s OK!**             from md:| :                   MathJax \|\| Image                 : |||| :------------ | :-------- | :----------------------------- || Apple         | : Apple : | Apple                          \| Banana        | Banana    | Banana                         \| Orange        | Orange    | Orange                         || :     Rowspan is 4     : || :        How's it?           : || ^^     A. Peach          ||    1. ![example][cell-image]   || ^^     B. Orange         || ^^ 2. $I = \int \rho R^{2} dV$ || ^^     C. Banana         || **It's OK!**                   |[cell-image]: https://jekyllrb.com/img/octojekyll.png &quot;An exemplary image&quot;Cell Inline AttributesThis feature is very useful for custom cell such as using inline style. (e.g., background, color, font)The idea and syntax comes from the Maruku package.Following are some examples of attributes definitions (ALDs) and afterwards comes the syntax explanation:from md:{:ref-name: #id .cls1 .cls2}{:second: ref-name #id-of-other title=&quot;hallo you&quot;}{:other: ref-name second}An ALD line has the following structure:  a left brace, optionally preceded by up to three spaces,  followed by a colon, the id and another colon,  followed by attribute definitions (allowed characters are backslash-escaped closing braces or any character except a not escaped closing brace),  followed by a closing brace and optional spaces until the end of the line.If there is more than one ALD with the same reference name, the attribute definitions of all the ALDs are processed like they are defined in one ALD.An inline attribute list (IAL) is used to attach attributes to another element.Here are some examples for span IALs:{: #id .cls1 .cls2} from md:{: #id .cls1 .cls2} &lt;!-- #id &lt;=&gt; id=&quot;id&quot;, .cls1 .cls2 &lt;=&gt; class=&quot;cls1 cls2&quot; --&gt;{: ref-name title=&quot;hallo you&quot;}{: ref-name class='.cls3' .cls4}Here is an example for custom table cell with IAL:            :             Here’s an Inline Attribute Lists example                :|||                         :       :      :  &lt;div style=&quot;color: red;&quot;&gt; &lt; Normal HTML Block &gt; &lt;/div&gt; :||              ^^      Red    {: .cls style=&quot;background: orange&quot; }                ||              ^^ IALs      Green  {: #id style=&quot;background: green; color: white&quot; }    ||              ^^      Blue   {: style=&quot;background: blue; color: white&quot; }         ||              ^^      Black  {: color-style text-style }                         ||      from md:{:color-style: style=&quot;background: black;&quot;}{:color-style: style=&quot;color: white;&quot;}{:text-style: style=&quot;font-weight: 800; text-decoration: underline;&quot;}|:             Here's an Inline Attribute Lists example                :||||| ------- | ------------------ | -------------------- | ------------------ ||:       :|:  &lt;div style=&quot;color: red;&quot;&gt; &amp;lt; Normal HTML Block &gt; &lt;/div&gt; :|||| ^^      |   Red    {: .cls style=&quot;background: orange&quot; }                |||| ^^ IALs |   Green  {: #id style=&quot;background: green; color: white&quot; }    |||| ^^      |   Blue   {: style=&quot;background: blue; color: white&quot; }         |||| ^^      |   Black  {: color-style text-style }                         |||Additionally, here you can learn more details about IALs.2. MathJax UsageMathJax is an open-source JavaScript display engine for LaTeX, MathML, and AsciiMath notation that works in all modern browsers.Some of the main features of MathJax include:  High-quality display of LaTeX, MathML, and AsciiMath notation in HTML pages  Supported in most browsers with no plug-ins, extra fonts, or specialsetup for the reader  Easy for authors, flexible for publishers, extensible for developers  Supports math accessibility, cut-and-paste interoperability, and otheradvanced functionality  Powerful API for integration with other web applications2.1 Performance optimizationAt building stage, the MathJax engine script will be added by automatically checking whether there is a math expression in the page, this feature can help you improve the page performance  on loading speed.2.2 How to use?Put your math expression within $…$$ a * b = c ^ b $from md:$ a * b = c ^ b $$ 2^{\frac{n-1}{3}} $from md:$ 2^{\frac{n-1}{3}} $$ \int_a^b f(x)\,dx. $from md:$ \int\_a^b f(x)\,dx. $3. PlantUML UsagePlantUML is a component that allows to quickly write:  sequence diagram,  use case diagram,  class diagram,  activity diagram,  component diagram,  state diagram,  object diagramThere are two ways to create a diagram in your Jekyll blog page:from md:&lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c&quot;&gt;orfrom md:&lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c&quot;&gt;A more complex activity diagram:from md:&lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c&quot;&gt;4. Mermaid UsageMermaid is a Javascript based diagramming and charting tool. It generates diagrams flowcharts and more, using markdown-inspired text for ease and speed.It allows to quickly write:  flow chart,  pie chart,  sequence diagram,  class diagram,  state diagram,  entity relationship diagram,  user journey,  ganttThere are two ways to create a diagram in your Jekyll blog page:from md:&lt;img class=&quot;mermaid&quot; src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9&quot;&gt;orfrom md:&lt;img class=&quot;mermaid&quot; src=&quot;https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9&quot;&gt;">
+    <meta itemprop="datePublished" content="2023-03-05T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2023-05-03T00:00:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">PlantUML Graphs
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li>
+<a href="#plantuml-graphs">PlantUML Graphs</a><ul>
+<li>
+<a href="#1-table-usage">1. Table Usage</a><ul>
+<li><a href="#rowspan-and-colspan">Rowspan and Colspan</a></li>
+<li><a href="#multiline">Multiline</a></li>
+<li><a href="#headerless">Headerless</a></li>
+<li><a href="#cell-alignment">Cell Alignment</a></li>
+<li><a href="#cell-markdown">Cell Markdown</a></li>
+<li><a href="#cell-inline-attributes">Cell Inline Attributes</a></li>
+</ul>
+</li>
+<li>
+<a href="#2-mathjax-usage">2. MathJax Usage</a><ul>
+<li><a href="#21-performance-optimization">2.1 Performance optimization</a></li>
+<li><a href="#22-how-to-use">2.2 How to use?</a></li>
+</ul>
+</li>
+<li><a href="#3-plantuml-usage">3. PlantUML Usage</a></li>
+<li><a href="#4-mermaid-usage">4. Mermaid Usage</a></li>
+</ul>
+</li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="plantuml-graphs">PlantUML Graphs</h1>
+
+<h3 id="1-table-usage">1. Table Usage</h3>
+
+<p><strong>For now, these extended features are provided:</strong></p>
+
+<ul>
+  <li>Cells spanning multiple columns</li>
+  <li>Cells spanning multiple rows</li>
+  <li>Cells text align separately</li>
+  <li>Table header not required</li>
+  <li>Grouped table header rows or data rows</li>
+</ul>
+
+<p>Noted that GitHub filters out style property, so the example displays with the obsolete align property. But in actual this plugin outputs style property with text-align CSS attribute.</p>
+
+<h4 id="rowspan-and-colspan">Rowspan and Colspan</h4>
+
+<p>^^ in a cell indicates it should be merged with the cell above.<br>
+This feature is contributed by <a href="https://github.com/pmccloghrylaing">pmccloghrylaing</a>.</p>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Stage</th>
+      <th style="text-align: right">Direct Products</th>
+      <th style="text-align: right">ATP Yields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right" rowspan="2">Glycolysis
+<br>
+</td>
+      <td style="text-align: right" colspan="2">2 ATP</td>
+      
+    </tr>
+    <tr>
+      
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">3–5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Pyruvaye oxidation</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right" rowspan="3">Citric acid cycle
+<br><br>
+</td>
+      <td style="text-align: right" colspan="2">2 ATP</td>
+      
+    </tr>
+    <tr>
+      
+      <td style="text-align: right">6 NADH</td>
+      <td style="text-align: right">15 ATP</td>
+    </tr>
+    <tr>
+      
+      <td style="text-align: right">2 FADH</td>
+      <td style="text-align: right">3 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right" colspan="3">30–32 ATP</td>
+      
+      
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+|              Stage | Direct Products | ATP Yields |
+| -----------------: | --------------: | ---------: |
+|         Glycolysis |          2 ATP              ||
+| ^^                 |          2 NADH |   3--5 ATP |
+| Pyruvaye oxidation |          2 NADH |      5 ATP |
+|  Citric acid cycle |          2 ATP              ||
+| ^^                 |          6 NADH |     15 ATP |
+| ^^                 |          2 FADH |      3 ATP |
+|                               30--32 ATP        |||
+</code></pre></div></div>
+
+<h4 id="multiline">Multiline</h4>
+
+<p>A backslash at end to join cell contents with the following lines.<br>
+This feature is contributed by <a href="https://github.com/Lucas-C">Lucas-C</a>.</p>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center" colspan="3">Easy Multiline</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple
+<br>
+Apple
+<br>
+Apple</td>
+      <td style="text-align: left">Banana
+<br>
+Banana
+<br>
+Banana</td>
+      <td style="text-align: left">Orange
+<br>
+Orange
+<br>
+Orange</td>
+    </tr>
+    
+    
+    <tr>
+      <td style="text-align: left">Apple
+<br>
+Apple</td>
+      <td style="text-align: left">Banana
+<br>
+Banana</td>
+      <td style="text-align: left">Orange
+<br>
+Orange</td>
+    </tr>
+    
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+| :    Easy Multiline   : |||
+| :----- | :----- | :------ |
+| Apple  | Banana | Orange  <span class="err">\</span>
+| Apple  | Banana | Orange  <span class="err">\</span>
+| Apple  | Banana | Orange
+| Apple  | Banana | Orange  <span class="err">\</span>
+| Apple  | Banana | Orange  |
+| Apple  | Banana | Orange  |
+</code></pre></div></div>
+
+<h4 id="headerless">Headerless</h4>
+
+<p>Table header can be eliminated.</p>
+
+<hr>
+
+<table>
+  <tbody>
+    <tr>
+      <td>♜</td>
+      <td> </td>
+      <td>♝</td>
+      <td>♛</td>
+      <td>♚</td>
+      <td>♝</td>
+      <td>♞</td>
+      <td>♜</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+    </tr>
+    <tr>
+      <td>♟</td>
+      <td> </td>
+      <td>♞</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♗</td>
+      <td> </td>
+      <td> </td>
+      <td>♟</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♙</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♘</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td> </td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+    </tr>
+    <tr>
+      <td>♖</td>
+      <td>♘</td>
+      <td>♗</td>
+      <td>♕</td>
+      <td>♔</td>
+      <td> </td>
+      <td> </td>
+      <td>♖</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+|--|--|--|--|--|--|--|--|
+|♜| |♝|♛|♚|♝|♞|♜|
+| |♟|♟|♟| |♟|♟|♟|
+|♟| |♞| | | | | |
+| |♗| | |♟| | | |
+| | | | |♙| | | |
+| | | | | |♘| | |
+|♙|♙|♙|♙| |♙|♙|♙|
+|♖|♘|♗|♕|♔| | |♖|
+</code></pre></div></div>
+
+<h4 id="cell-alignment">Cell Alignment</h4>
+
+<p>Markdown table syntax use colons “:” for forcing column alignment.<br>
+Therefore, here we also use it for forcing cell alignment.</p>
+
+<p>Table cell can be set alignment separately.</p>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center" colspan="3">Fruits || Food</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple
+<br>
+Banana
+<br>
+Orange</td>
+      <td style="text-align: center">Apple
+<br>
+Banana
+<br>
+Orange</td>
+      <td style="text-align: left">Apple
+<br>
+Banana
+<br>
+Orange</td>
+    </tr>
+    
+    
+    <tr>
+      <td style="text-align: center" colspan="2" rowspan="4">Rowspan is 4
+<br>
+A. Peach
+<br>
+B. Orange
+<br>
+C. Banana</td>
+      <td style="text-align: left">How’s it?</td>
+      
+    </tr>
+    <tr>
+      
+      <td style="text-align: right" rowspan="2">
+<ol>
+  <li>Fine
+<br>
+</li>
+  <li>Bad</li>
+</ol>
+</td>
+      
+    </tr>
+    <tr>
+      
+      
+      
+    </tr>
+    <tr>
+      
+      <td style="text-align: left">It’s OK!</td>
+      
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+| :        Fruits <span class="se">\|\|</span> Food       : |||
+| :--------- | :-------- | :--------  |
+| Apple      | : Apple : | Apple      <span class="err">\</span>
+| Banana     |   Banana  | Banana     <span class="err">\</span>
+| Orange     |   Orange  | Orange     |
+| :   Rowspan is 4    : || How's it?  |
+|^^    A. Peach         ||   1. Fine :|
+|^^    B. Orange        ||^^ 2. Bad   |
+|^^    C. Banana        ||  It's OK!  |
+</code></pre></div></div>
+
+<h4 id="cell-markdown">Cell Markdown</h4>
+
+<p>Sometimes we may need some abundant content (e.g., mathjax, image, video) in Markdown table<br>
+Therefore, here we also make markown syntax possible inside a cell.</p>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center" colspan="3">MathJax || Image</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple
+<br>
+Banana
+<br>
+Orange</td>
+      <td style="text-align: center">Apple
+<br>
+Banana
+<br>
+Orange</td>
+      <td style="text-align: left">Apple
+<br>
+Banana
+<br>
+Orange</td>
+    </tr>
+    
+    
+    <tr>
+      <td style="text-align: center" colspan="2" rowspan="4">Rowspan is 4
+<br>
+A. Peach
+<br>
+B. Orange
+<br>
+C. Banana</td>
+      <td style="text-align: center">How’s it?</td>
+      
+    </tr>
+    <tr>
+      
+      <td style="text-align: left" rowspan="2">
+<ol>
+  <li>
+<img src="https://jekyllrb.com/img/octojekyll.png" alt="example" title="An exemplary image">
+<br>
+</li>
+  <li>$I = \int \rho R^{2} dV$</li>
+</ol>
+</td>
+      
+    </tr>
+    <tr>
+      
+      
+      
+    </tr>
+    <tr>
+      
+      <td style="text-align: left"><strong>It’s OK!</strong></td>
+      
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+| :                   MathJax <span class="se">\|\|</span> Image                 : |||
+| :------------ | :-------- | :----------------------------- |
+| Apple         | : Apple : | Apple                          <span class="err">\</span>
+| Banana        | Banana    | Banana                         <span class="err">\</span>
+| Orange        | Orange    | Orange                         |
+| :     Rowspan is 4     : || :        How's it?           : |
+| ^^     A. Peach          ||    1. !<span class="p">[</span><span class="nv">example</span><span class="p">][</span><span class="ss">cell-image</span><span class="p">]</span>   |
+| ^^     B. Orange         || ^^ 2. $I = <span class="se">\i</span>nt <span class="se">\r</span>ho R^{2} dV$ |
+| ^^     C. Banana         || <span class="gs">**It's OK!**</span>                   |
+
+<span class="p">[</span><span class="ss">cell-image</span><span class="p">]:</span> <span class="sx">https://jekyllrb.com/img/octojekyll.png</span> <span class="nn">"An exemplary image"</span>
+</code></pre></div></div>
+
+<h4 id="cell-inline-attributes">Cell Inline Attributes</h4>
+
+<p>This feature is very useful for custom cell such as using inline style. (e.g., background, color, font)<br>
+The idea and syntax comes from the <a href="http://maruku.rubyforge.org/">Maruku</a> package.</p>
+
+<p><a href="https://kramdown.gettalong.org/syntax.html#block-ials"></a></p>
+
+<p>Following are some examples of attributes definitions (ALDs) and afterwards comes the syntax explanation:</p>
+
+<hr>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+{:ref-name: #id .cls1 .cls2}
+{:second: ref-name #id-of-other title="hallo you"}
+{:other: ref-name second}
+</code></pre></div></div>
+
+<p>An ALD line has the following structure:</p>
+
+<ul>
+  <li>a left brace, optionally preceded by up to three spaces,</li>
+  <li>followed by a colon, the id and another colon,</li>
+  <li>followed by attribute definitions (allowed characters are backslash-escaped closing braces or any character except a not escaped closing brace),</li>
+  <li>followed by a closing brace and optional spaces until the end of the line.</li>
+</ul>
+
+<p>If there is more than one ALD with the same reference name, the attribute definitions of all the ALDs are processed like they are defined in one ALD.</p>
+
+<p>An inline attribute list (IAL) is used to attach attributes to another element.<br>
+Here are some examples for span IALs:</p>
+
+<hr>
+
+<p id="id" class="cls1 cls2 cls1 cls2 .cls3 cls4" title="hallo you">{: #id .cls1 .cls2} <!-- #id <=> id="id", .cls1 .cls2 <=> class="cls1 cls2" --></p>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+{: #id .cls1 .cls2} <span class="c">&lt;!-- #id &lt;=&gt;</span> id="id", .cls1 .cls2 <span class="c">&lt;=&gt;</span> class="cls1 cls2" --&gt;
+{: ref-name title="hallo you"}
+{: ref-name class='.cls3' .cls4}
+</code></pre></div></div>
+
+<p>Here is an example for custom table cell with IAL:</p>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="4" style="text-align: center">Here’s an Inline Attribute Lists example</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center" rowspan="5">
+<br><br>
+IALs
+<br><br>
+</td>
+      <td colspan="3" style="text-align: center">
+<div style="color: red;"> &lt; Normal HTML Block &gt; </div>
+</td>
+    </tr>
+    <tr>
+      
+      <td colspan="3" class="cls" style="background: orange">Red    </td>
+    </tr>
+    <tr>
+      
+      <td colspan="3" id="id" style="background: green; color: white">Green  </td>
+    </tr>
+    <tr>
+      
+      <td colspan="3" style="background: blue; color: white">Blue   </td>
+    </tr>
+    <tr>
+      
+      <td colspan="3" style="background: black;color: white;font-weight: 800; text-decoration: underline;">Black  </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+{:color-style: style="background: black;"}
+{:color-style: style="color: white;"}
+{:text-style: style="font-weight: 800; text-decoration: underline;"}
+
+|:             Here's an Inline Attribute Lists example                :||||
+| ------- | ------------------ | -------------------- | ------------------ |
+|:       :|:  <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"color: red;"</span><span class="nt">&gt;</span> <span class="ni">&amp;lt;</span> Normal HTML Block &gt; <span class="nt">&lt;/div&gt;</span> :|||
+| ^^      |   Red    {: .cls style="background: orange" }                |||
+| ^^ IALs |   Green  {: #id style="background: green; color: white" }    |||
+| ^^      |   Blue   {: style="background: blue; color: white" }         |||
+| ^^      |   Black  {: color-style text-style }                         |||
+</code></pre></div></div>
+
+<p>Additionally, <a href="https://kramdown.gettalong.org/syntax.html#block-ials">here</a> you can learn more details about IALs.</p>
+
+<h3 id="2-mathjax-usage">2. MathJax Usage</h3>
+
+<p><a href="http://www.mathjax.org/">MathJax</a> is an open-source JavaScript display engine for LaTeX, MathML, and AsciiMath notation that works in all modern browsers.</p>
+
+<p>Some of the main features of MathJax include:</p>
+
+<ul>
+  <li>High-quality display of LaTeX, MathML, and AsciiMath notation in HTML pages</li>
+  <li>Supported in most browsers with no plug-ins, extra fonts, or special
+setup for the reader</li>
+  <li>Easy for authors, flexible for publishers, extensible for developers</li>
+  <li>Supports math accessibility, cut-and-paste interoperability, and other
+advanced functionality</li>
+  <li>Powerful API for integration with other web applications</li>
+</ul>
+
+<h4 id="21-performance-optimization">2.1 Performance optimization</h4>
+
+<p>At building stage, the MathJax engine script will be added by automatically checking whether there is a math expression in the page, this feature can help you improve the page performance  on loading speed.</p>
+
+<h4 id="22-how-to-use">2.2 How to use?</h4>
+
+<p>Put your math expression within $…$</p>
+
+<hr>
+
+<p>$ a * b = c ^ b $</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+$ a <span class="err">*</span> b = c ^ b $
+</code></pre></div></div>
+
+<p>$ 2^{\frac{n-1}{3}} $</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+$ 2^{<span class="se">\f</span>rac{n-1}{3}} $
+</code></pre></div></div>
+
+<p>$ \int_a^b f(x)\,dx. $</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+$ <span class="se">\i</span>nt<span class="se">\_</span>a^b f(x)<span class="se">\,</span>dx. $
+</code></pre></div></div>
+
+<h3 id="3-plantuml-usage">3. PlantUML Usage</h3>
+
+<p><a href="https://plantuml.com">PlantUML</a> is a component that allows to quickly write:</p>
+
+<ul>
+  <li>sequence diagram,</li>
+  <li>use case diagram,</li>
+  <li>class diagram,</li>
+  <li>activity diagram,</li>
+  <li>component diagram,</li>
+  <li>state diagram,</li>
+  <li>object diagram</li>
+</ul>
+
+<p>There are two ways to create a diagram in your Jekyll blog page:</p>
+
+<hr>
+
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c"></p>
+
+<hr>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+&lt;img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c"&gt;
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"plantuml"</span> <span class="na">src=</span><span class="s">"http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>A more complex activity diagram:</p>
+
+<hr>
+
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c"></p>
+
+<hr>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"plantuml"</span> <span class="na">src=</span><span class="s">"http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="4-mermaid-usage">4. Mermaid Usage</h3>
+
+<p><a href="https://mermaid-js.github.io/">Mermaid</a> is a Javascript based diagramming and charting tool. It generates diagrams flowcharts and more, using markdown-inspired text for ease and speed.</p>
+
+<p>It allows to quickly write:</p>
+
+<ul>
+  <li>flow chart,</li>
+  <li>pie chart,</li>
+  <li>sequence diagram,</li>
+  <li>class diagram,</li>
+  <li>state diagram,</li>
+  <li>entity relationship diagram,</li>
+  <li>user journey,</li>
+  <li>gantt</li>
+</ul>
+
+<p>There are two ways to create a diagram in your Jekyll blog page:</p>
+
+<hr>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9"></p>
+
+<hr>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+&lt;img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9"&gt;
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"mermaid"</span> <span class="na">src=</span><span class="s">"https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-check" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-05-03">May 3, 2023</time></p>
+
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-03-05T00:00:00+00:00">March 5, 2023</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/latex-math-notations/" class="pagination--pager" title="LaTex Math Notations
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 what name?. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/trmwzm/min-mist-testing" rel="nofollow">Minimal Mistakes Template</a>.</div>
+
+      </footer>
+    </div>
+
+    
+<!-- MathJax -->
+<script src="/assets/js/mathjax-config.js"></script>
+<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.min.js">
+</script>
+
+
+
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>

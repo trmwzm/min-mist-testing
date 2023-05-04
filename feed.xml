@@ -1,0 +1,1443 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-05-04T02:57:14+00:00</updated><id>/feed.xml</id><title type="html">Markdown Sandbox</title><subtitle>Math, UML, table,... rendering tests</subtitle><author><name>T Michel</name></author><entry><title type="html">PlantUML Graphs</title><link href="/plantuml/" rel="alternate" type="text/html" title="PlantUML Graphs" /><published>2023-03-05T00:00:00+00:00</published><updated>2023-05-03T00:00:00+00:00</updated><id>/plantuml</id><content type="html" xml:base="/plantuml/"><![CDATA[<h1 id="plantuml-graphs">PlantUML Graphs</h1>
+
+<h3 id="1-table-usage">1. Table Usage</h3>
+
+<p><strong>For now, these extended features are provided:</strong></p>
+
+<ul>
+  <li>Cells spanning multiple columns</li>
+  <li>Cells spanning multiple rows</li>
+  <li>Cells text align separately</li>
+  <li>Table header not required</li>
+  <li>Grouped table header rows or data rows</li>
+</ul>
+
+<p>Noted that GitHub filters out style property, so the example displays with the obsolete align property. But in actual this plugin outputs style property with text-align CSS attribute.</p>
+
+<h4 id="rowspan-and-colspan">Rowspan and Colspan</h4>
+
+<p>^^ in a cell indicates it should be merged with the cell above.<br />
+This feature is contributed by <a href="https://github.com/pmccloghrylaing">pmccloghrylaing</a>.</p>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Stage</th>
+      <th style="text-align: right">Direct Products</th>
+      <th style="text-align: right">ATP Yields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">Glycolysis</td>
+      <td style="text-align: right">2 ATP              |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">3–5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Pyruvaye oxidation</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Citric acid cycle</td>
+      <td style="text-align: right">2 ATP              |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">6 NADH</td>
+      <td style="text-align: right">15 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 FADH</td>
+      <td style="text-align: right">3 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">30–32 ATP        ||</td>
+      <td style="text-align: right"> </td>
+      <td style="text-align: right"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+|              Stage | Direct Products | ATP Yields |
+| -----------------: | --------------: | ---------: |
+|         Glycolysis |          2 ATP              ||
+| ^^                 |          2 NADH |   3--5 ATP |
+| Pyruvaye oxidation |          2 NADH |      5 ATP |
+|  Citric acid cycle |          2 ATP              ||
+| ^^                 |          6 NADH |     15 ATP |
+| ^^                 |          2 FADH |      3 ATP |
+|                               30--32 ATP        |||
+</code></pre></div></div>
+
+<h4 id="multiline">Multiline</h4>
+
+<p>A backslash at end to join cell contents with the following lines.<br />
+This feature is contributed by <a href="https://github.com/Lucas-C">Lucas-C</a>.</p>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">:    Easy Multiline   : ||</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+| :    Easy Multiline   : |||
+| :----- | :----- | :------ |
+| Apple  | Banana | Orange  <span class="err">\</span>
+| Apple  | Banana | Orange  <span class="err">\</span>
+| Apple  | Banana | Orange
+| Apple  | Banana | Orange  <span class="err">\</span>
+| Apple  | Banana | Orange  |
+| Apple  | Banana | Orange  |
+</code></pre></div></div>
+
+<h4 id="headerless">Headerless</h4>
+
+<p>Table header can be eliminated.</p>
+
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td>♜</td>
+      <td> </td>
+      <td>♝</td>
+      <td>♛</td>
+      <td>♚</td>
+      <td>♝</td>
+      <td>♞</td>
+      <td>♜</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+    </tr>
+    <tr>
+      <td>♟</td>
+      <td> </td>
+      <td>♞</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♗</td>
+      <td> </td>
+      <td> </td>
+      <td>♟</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♙</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♘</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td> </td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+    </tr>
+    <tr>
+      <td>♖</td>
+      <td>♘</td>
+      <td>♗</td>
+      <td>♕</td>
+      <td>♔</td>
+      <td> </td>
+      <td> </td>
+      <td>♖</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+|--|--|--|--|--|--|--|--|
+|♜| |♝|♛|♚|♝|♞|♜|
+| |♟|♟|♟| |♟|♟|♟|
+|♟| |♞| | | | | |
+| |♗| | |♟| | | |
+| | | | |♙| | | |
+| | | | | |♘| | |
+|♙|♙|♙|♙| |♙|♙|♙|
+|♖|♘|♗|♕|♔| | |♖|
+</code></pre></div></div>
+
+<h4 id="cell-alignment">Cell Alignment</h4>
+
+<p>Markdown table syntax use colons “:” for forcing column alignment.<br />
+Therefore, here we also use it for forcing cell alignment.</p>
+
+<p>Table cell can be set alignment separately.</p>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">:        Fruits || Food       : ||</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">: Apple :</td>
+      <td style="text-align: left">Apple      \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana     \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">:   Rowspan is 4    : |</td>
+      <td style="text-align: left">How’s it?</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^    A. Peach         |</td>
+      <td style="text-align: left">1. Fine :</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^    B. Orange        |</td>
+      <td style="text-align: left">^^ 2. Bad</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^    C. Banana        |</td>
+      <td style="text-align: left">It’s OK!</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+| :        Fruits <span class="se">\|\|</span> Food       : |||
+| :--------- | :-------- | :--------  |
+| Apple      | : Apple : | Apple      <span class="err">\</span>
+| Banana     |   Banana  | Banana     <span class="err">\</span>
+| Orange     |   Orange  | Orange     |
+| :   Rowspan is 4    : || How's it?  |
+|^^    A. Peach         ||   1. Fine :|
+|^^    B. Orange        ||^^ 2. Bad   |
+|^^    C. Banana        ||  It's OK!  |
+</code></pre></div></div>
+
+<h4 id="cell-markdown">Cell Markdown</h4>
+
+<p>Sometimes we may need some abundant content (e.g., mathjax, image, video) in Markdown table<br />
+Therefore, here we also make markown syntax possible inside a cell.</p>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">:                   MathJax || Image                 : ||</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">: Apple :</td>
+      <td style="text-align: left">Apple                          \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana                         \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">:     Rowspan is 4     : |</td>
+      <td style="text-align: left">:        How’s it?           :</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^     A. Peach          |</td>
+      <td style="text-align: left">1. ![example](https://jekyllrb.com/img/octojekyll.png "An exemplary image")</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^     B. Orange         |</td>
+      <td style="text-align: left">^^ 2. $I = \int \rho R^{2} dV$</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^     C. Banana         |</td>
+      <td style="text-align: left">**It’s OK!**</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+| :                   MathJax <span class="se">\|\|</span> Image                 : |||
+| :------------ | :-------- | :----------------------------- |
+| Apple         | : Apple : | Apple                          <span class="err">\</span>
+| Banana        | Banana    | Banana                         <span class="err">\</span>
+| Orange        | Orange    | Orange                         |
+| :     Rowspan is 4     : || :        How's it?           : |
+| ^^     A. Peach          ||    1. !<span class="p">[</span><span class="nv">example</span><span class="p">][</span><span class="ss">cell-image</span><span class="p">]</span>   |
+| ^^     B. Orange         || ^^ 2. $I = <span class="se">\i</span>nt <span class="se">\r</span>ho R^{2} dV$ |
+| ^^     C. Banana         || <span class="gs">**It's OK!**</span>                   |
+
+<span class="p">[</span><span class="ss">cell-image</span><span class="p">]:</span> <span class="sx">https://jekyllrb.com/img/octojekyll.png</span> <span class="nn">"An exemplary image"</span>
+</code></pre></div></div>
+
+<h4 id="cell-inline-attributes">Cell Inline Attributes</h4>
+
+<p>This feature is very useful for custom cell such as using inline style. (e.g., background, color, font)<br />
+The idea and syntax comes from the <a href="http://maruku.rubyforge.org/">Maruku</a> package.</p>
+
+<p><a href="https://kramdown.gettalong.org/syntax.html#block-ials"></a></p>
+
+<p>Following are some examples of attributes definitions (ALDs) and afterwards comes the syntax explanation:</p>
+
+<hr />
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+{:ref-name: #id .cls1 .cls2}
+{:second: ref-name #id-of-other title="hallo you"}
+{:other: ref-name second}
+</code></pre></div></div>
+
+<p>An ALD line has the following structure:</p>
+
+<ul>
+  <li>a left brace, optionally preceded by up to three spaces,</li>
+  <li>followed by a colon, the id and another colon,</li>
+  <li>followed by attribute definitions (allowed characters are backslash-escaped closing braces or any character except a not escaped closing brace),</li>
+  <li>followed by a closing brace and optional spaces until the end of the line.</li>
+</ul>
+
+<p>If there is more than one ALD with the same reference name, the attribute definitions of all the ALDs are processed like they are defined in one ALD.</p>
+
+<p>An inline attribute list (IAL) is used to attach attributes to another element.<br />
+Here are some examples for span IALs:</p>
+
+<hr />
+
+<p id="id" class="cls1 cls2 cls1 cls2 .cls3 cls4" title="hallo you">{: #id .cls1 .cls2} <!-- #id <=> id="id", .cls1 .cls2 <=> class="cls1 cls2" --></p>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+{: #id .cls1 .cls2} <span class="c">&lt;!-- #id &lt;=&gt;</span> id="id", .cls1 .cls2 <span class="c">&lt;=&gt;</span> class="cls1 cls2" --&gt;
+{: ref-name title="hallo you"}
+{: ref-name class='.cls3' .cls4}
+</code></pre></div></div>
+
+<p>Here is an example for custom table cell with IAL:</p>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>:             Here’s an Inline Attribute Lists example                :|||</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:       :</td>
+      <td>:  &lt;div style="color: red;"&gt; &lt; Normal HTML Block &gt; &lt;/div&gt; :||</td>
+    </tr>
+    <tr>
+      <td>^^</td>
+      <td>Red    {: .cls style="background: orange" }                ||</td>
+    </tr>
+    <tr>
+      <td>^^ IALs</td>
+      <td>Green  {: #id style="background: green; color: white" }    ||</td>
+    </tr>
+    <tr>
+      <td>^^</td>
+      <td>Blue   {: style="background: blue; color: white" }         ||</td>
+    </tr>
+    <tr>
+      <td>^^</td>
+      <td>Black  {: color-style text-style }                         ||</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+{:color-style: style="background: black;"}
+{:color-style: style="color: white;"}
+{:text-style: style="font-weight: 800; text-decoration: underline;"}
+
+|:             Here's an Inline Attribute Lists example                :||||
+| ------- | ------------------ | -------------------- | ------------------ |
+|:       :|:  <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"color: red;"</span><span class="nt">&gt;</span> <span class="ni">&amp;lt;</span> Normal HTML Block &gt; <span class="nt">&lt;/div&gt;</span> :|||
+| ^^      |   Red    {: .cls style="background: orange" }                |||
+| ^^ IALs |   Green  {: #id style="background: green; color: white" }    |||
+| ^^      |   Blue   {: style="background: blue; color: white" }         |||
+| ^^      |   Black  {: color-style text-style }                         |||
+</code></pre></div></div>
+
+<p>Additionally, <a href="https://kramdown.gettalong.org/syntax.html#block-ials">here</a> you can learn more details about IALs.</p>
+
+<h3 id="2-mathjax-usage">2. MathJax Usage</h3>
+
+<p><a href="http://www.mathjax.org/">MathJax</a> is an open-source JavaScript display engine for LaTeX, MathML, and AsciiMath notation that works in all modern browsers.</p>
+
+<p>Some of the main features of MathJax include:</p>
+
+<ul>
+  <li>High-quality display of LaTeX, MathML, and AsciiMath notation in HTML pages</li>
+  <li>Supported in most browsers with no plug-ins, extra fonts, or special
+setup for the reader</li>
+  <li>Easy for authors, flexible for publishers, extensible for developers</li>
+  <li>Supports math accessibility, cut-and-paste interoperability, and other
+advanced functionality</li>
+  <li>Powerful API for integration with other web applications</li>
+</ul>
+
+<h4 id="21-performance-optimization">2.1 Performance optimization</h4>
+
+<p>At building stage, the MathJax engine script will be added by automatically checking whether there is a math expression in the page, this feature can help you improve the page performance  on loading speed.</p>
+
+<h4 id="22-how-to-use">2.2 How to use?</h4>
+
+<p>Put your math expression within $…$</p>
+
+<hr />
+
+<p>$ a * b = c ^ b $</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+$ a <span class="err">*</span> b = c ^ b $
+</code></pre></div></div>
+
+<p>$ 2^{\frac{n-1}{3}} $</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+$ 2^{<span class="se">\f</span>rac{n-1}{3}} $
+</code></pre></div></div>
+
+<p>$ \int_a^b f(x)\,dx. $</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+$ <span class="se">\i</span>nt<span class="se">\_</span>a^b f(x)<span class="se">\,</span>dx. $
+</code></pre></div></div>
+
+<h3 id="3-plantuml-usage">3. PlantUML Usage</h3>
+
+<p><a href="https://plantuml.com">PlantUML</a> is a component that allows to quickly write:</p>
+
+<ul>
+  <li>sequence diagram,</li>
+  <li>use case diagram,</li>
+  <li>class diagram,</li>
+  <li>activity diagram,</li>
+  <li>component diagram,</li>
+  <li>state diagram,</li>
+  <li>object diagram</li>
+</ul>
+
+<p>There are two ways to create a diagram in your Jekyll blog page:</p>
+
+<hr />
+
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c" /></p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+&lt;img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c"&gt;
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"plantuml"</span> <span class="na">src=</span><span class="s">"http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>A more complex activity diagram:</p>
+
+<hr />
+
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c" /></p>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"plantuml"</span> <span class="na">src=</span><span class="s">"http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="4-mermaid-usage">4. Mermaid Usage</h3>
+
+<p><a href="https://mermaid-js.github.io/">Mermaid</a> is a Javascript based diagramming and charting tool. It generates diagrams flowcharts and more, using markdown-inspired text for ease and speed.</p>
+
+<p>It allows to quickly write:</p>
+
+<ul>
+  <li>flow chart,</li>
+  <li>pie chart,</li>
+  <li>sequence diagram,</li>
+  <li>class diagram,</li>
+  <li>state diagram,</li>
+  <li>entity relationship diagram,</li>
+  <li>user journey,</li>
+  <li>gantt</li>
+</ul>
+
+<p>There are two ways to create a diagram in your Jekyll blog page:</p>
+
+<hr />
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9" /></p>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+&lt;img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9"&gt;
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"mermaid"</span> <span class="na">src=</span><span class="s">"https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9"</span><span class="nt">&gt;</span>
+</code></pre></div></div>]]></content><author><name>T Michel</name></author><summary type="html"><![CDATA[PlantUML Graphs 1. Table Usage For now, these extended features are provided: Cells spanning multiple columns Cells spanning multiple rows Cells text align separately Table header not required Grouped table header rows or data rows Noted that GitHub filters out style property, so the example displays with the obsolete align property. But in actual this plugin outputs style property with text-align CSS attribute. Rowspan and Colspan ^^ in a cell indicates it should be merged with the cell above. This feature is contributed by pmccloghrylaing. Stage Direct Products ATP Yields Glycolysis 2 ATP |   ^^ 2 NADH 3–5 ATP Pyruvaye oxidation 2 NADH 5 ATP Citric acid cycle 2 ATP |   ^^ 6 NADH 15 ATP ^^ 2 FADH 3 ATP 30–32 ATP ||     from md: | Stage | Direct Products | ATP Yields | | -----------------: | --------------: | ---------: | | Glycolysis | 2 ATP || | ^^ | 2 NADH | 3--5 ATP | | Pyruvaye oxidation | 2 NADH | 5 ATP | | Citric acid cycle | 2 ATP || | ^^ | 6 NADH | 15 ATP | | ^^ | 2 FADH | 3 ATP | | 30--32 ATP ||| Multiline A backslash at end to join cell contents with the following lines. This feature is contributed by Lucas-C. : Easy Multiline : ||     Apple Banana Orange \ Apple Banana Orange \ Apple Banana Orange Apple Banana Orange \ Apple Banana Orange Apple Banana Orange from md: | : Easy Multiline : ||| | :----- | :----- | :------ | | Apple | Banana | Orange \ | Apple | Banana | Orange \ | Apple | Banana | Orange | Apple | Banana | Orange \ | Apple | Banana | Orange | | Apple | Banana | Orange | Headerless Table header can be eliminated. ♜   ♝ ♛ ♚ ♝ ♞ ♜   ♟ ♟ ♟   ♟ ♟ ♟ ♟   ♞             ♗     ♟               ♙                 ♘     ♙ ♙ ♙ ♙   ♙ ♙ ♙ ♖ ♘ ♗ ♕ ♔     ♖ from md: |--|--|--|--|--|--|--|--| |♜| |♝|♛|♚|♝|♞|♜| | |♟|♟|♟| |♟|♟|♟| |♟| |♞| | | | | | | |♗| | |♟| | | | | | | | |♙| | | | | | | | | |♘| | | |♙|♙|♙|♙| |♙|♙|♙| |♖|♘|♗|♕|♔| | |♖| Cell Alignment Markdown table syntax use colons “:” for forcing column alignment. Therefore, here we also use it for forcing cell alignment. Table cell can be set alignment separately. : Fruits || Food : ||     Apple : Apple : Apple \ Banana Banana Banana \ Orange Orange Orange : Rowspan is 4 : | How’s it?   ^^ A. Peach | 1. Fine :   ^^ B. Orange | ^^ 2. Bad   ^^ C. Banana | It’s OK!   from md: | : Fruits \|\| Food : ||| | :--------- | :-------- | :-------- | | Apple | : Apple : | Apple \ | Banana | Banana | Banana \ | Orange | Orange | Orange | | : Rowspan is 4 : || How's it? | |^^ A. Peach || 1. Fine :| |^^ B. Orange ||^^ 2. Bad | |^^ C. Banana || It's OK! | Cell Markdown Sometimes we may need some abundant content (e.g., mathjax, image, video) in Markdown table Therefore, here we also make markown syntax possible inside a cell. : MathJax || Image : ||     Apple : Apple : Apple \ Banana Banana Banana \ Orange Orange Orange : Rowspan is 4 : | : How’s it? :   ^^ A. Peach | 1. ![example](https://jekyllrb.com/img/octojekyll.png "An exemplary image")   ^^ B. Orange | ^^ 2. $I = \int \rho R^{2} dV$   ^^ C. Banana | **It’s OK!**   from md: | : MathJax \|\| Image : ||| | :------------ | :-------- | :----------------------------- | | Apple | : Apple : | Apple \ | Banana | Banana | Banana \ | Orange | Orange | Orange | | : Rowspan is 4 : || : How's it? : | | ^^ A. Peach || 1. ![example][cell-image] | | ^^ B. Orange || ^^ 2. $I = \int \rho R^{2} dV$ | | ^^ C. Banana || **It's OK!** | [cell-image]: https://jekyllrb.com/img/octojekyll.png "An exemplary image" Cell Inline Attributes This feature is very useful for custom cell such as using inline style. (e.g., background, color, font) The idea and syntax comes from the Maruku package. Following are some examples of attributes definitions (ALDs) and afterwards comes the syntax explanation: from md: {:ref-name: #id .cls1 .cls2} {:second: ref-name #id-of-other title="hallo you"} {:other: ref-name second} An ALD line has the following structure: a left brace, optionally preceded by up to three spaces, followed by a colon, the id and another colon, followed by attribute definitions (allowed characters are backslash-escaped closing braces or any character except a not escaped closing brace), followed by a closing brace and optional spaces until the end of the line. If there is more than one ALD with the same reference name, the attribute definitions of all the ALDs are processed like they are defined in one ALD. An inline attribute list (IAL) is used to attach attributes to another element. Here are some examples for span IALs: {: #id .cls1 .cls2} from md: {: #id .cls1 .cls2} &lt;!-- #id &lt;=&gt; id="id", .cls1 .cls2 &lt;=&gt; class="cls1 cls2" --&gt; {: ref-name title="hallo you"} {: ref-name class='.cls3' .cls4} Here is an example for custom table cell with IAL: : Here’s an Inline Attribute Lists example :|||   : : : &lt;div style="color: red;"&gt; &lt; Normal HTML Block &gt; &lt;/div&gt; :|| ^^ Red {: .cls style="background: orange" } || ^^ IALs Green {: #id style="background: green; color: white" } || ^^ Blue {: style="background: blue; color: white" } || ^^ Black {: color-style text-style } || from md: {:color-style: style="background: black;"} {:color-style: style="color: white;"} {:text-style: style="font-weight: 800; text-decoration: underline;"} |: Here's an Inline Attribute Lists example :|||| | ------- | ------------------ | -------------------- | ------------------ | |: :|: &lt;div style="color: red;"&gt; &amp;lt; Normal HTML Block &gt; &lt;/div&gt; :||| | ^^ | Red {: .cls style="background: orange" } ||| | ^^ IALs | Green {: #id style="background: green; color: white" } ||| | ^^ | Blue {: style="background: blue; color: white" } ||| | ^^ | Black {: color-style text-style } ||| Additionally, here you can learn more details about IALs. 2. MathJax Usage MathJax is an open-source JavaScript display engine for LaTeX, MathML, and AsciiMath notation that works in all modern browsers. Some of the main features of MathJax include: High-quality display of LaTeX, MathML, and AsciiMath notation in HTML pages Supported in most browsers with no plug-ins, extra fonts, or special setup for the reader Easy for authors, flexible for publishers, extensible for developers Supports math accessibility, cut-and-paste interoperability, and other advanced functionality Powerful API for integration with other web applications 2.1 Performance optimization At building stage, the MathJax engine script will be added by automatically checking whether there is a math expression in the page, this feature can help you improve the page performance on loading speed. 2.2 How to use? Put your math expression within $…$ $ a * b = c ^ b $ from md: $ a * b = c ^ b $ $ 2^{\frac{n-1}{3}} $ from md: $ 2^{\frac{n-1}{3}} $ $ \int_a^b f(x)\,dx. $ from md: $ \int\_a^b f(x)\,dx. $ 3. PlantUML Usage PlantUML is a component that allows to quickly write: sequence diagram, use case diagram, class diagram, activity diagram, component diagram, state diagram, object diagram There are two ways to create a diagram in your Jekyll blog page: from md: &lt;img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c"&gt; or from md: &lt;img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c"&gt; A more complex activity diagram: from md: &lt;img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a73746172740a7265706561740a20203a5465737420736f6d657468696e673b0a2020202069662028536f6d657468696e672077656e742077726f6e673f29207468656e20286e6f290a2020202020202370616c65677265656e3a4f4b3b0a202020202020627265616b0a20202020656e6469660a202020202d3e4e4f4b3b0a202020203a416c65727420224572726f722077697468206c6f6e672074657874223b0a726570656174207768696c652028536f6d657468696e672077656e742077726f6e672077697468206c6f6e6720746578743f29206973202879657329206e6f7420286e6f290a2d3e2f2f6d657267656420737465702f2f3b0a3a416c657274202253756363657373223b0a73746f700a40656e64756d6c"&gt; 4. Mermaid Usage Mermaid is a Javascript based diagramming and charting tool. It generates diagrams flowcharts and more, using markdown-inspired text for ease and speed. It allows to quickly write: flow chart, pie chart, sequence diagram, class diagram, state diagram, entity relationship diagram, user journey, gantt There are two ways to create a diagram in your Jekyll blog page: from md: &lt;img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9"&gt; or from md: &lt;img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9"&gt;]]></summary></entry><entry><title type="html">LaTex Math Notations</title><link href="/latex-math-notations/" rel="alternate" type="text/html" title="LaTex Math Notations" /><published>2021-07-17T00:00:00+00:00</published><updated>2021-12-19T15:39:14+00:00</updated><id>/latex-math-notations</id><content type="html" xml:base="/latex-math-notations/"><![CDATA[<p>This document provides the notation used in the <a href="https://www.deeplearningbook.org/">Deep Learning Book</a>, and is highly based on this <a href="https://github.com/goodfeli/dlbook_notation/blob/master/notation.tex">LaTex file</a>. You can refer to the source of this post for the latex commands.</p>
+
+<!--more-->
+
+<h2 id="numbers-and-arrays">Numbers and Arrays</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle a$$</td>
+      <td>A scalar (integer or real)</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \va$$</td>
+      <td>A vector</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mA$$</td>
+      <td>A matrix</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \tA$$</td>
+      <td>A tensor</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mI_n$$</td>
+      <td>Identity matrix with $$n$$ rows and $$n$$ columns</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mI$$</td>
+      <td>Identity matrix with dimensionality implied by context</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \ve^{(i)}$$</td>
+      <td>Standard basis vector $$[0,\dots,0,1,0,\dots,0]$$ with a 1 at position $$i$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \text{diag}(\va)$$</td>
+      <td>A square, diagonal matrix with diagonal entries given by $$\va$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \ra$$</td>
+      <td>A scalar random variable</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \rva$$</td>
+      <td>A vector-valued random variable</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \rmA$$</td>
+      <td>A matrix-valued random variable</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sets-and-graphs">Sets and Graphs</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle \sA$$</td>
+      <td>A set</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \R$$</td>
+      <td>The set of real numbers</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle {0, 1}$$</td>
+      <td>The set containing 0 and 1</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle {0, 1, \dots, n }$$</td>
+      <td>The set of all integers between $$0$$ and $$n$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle [a, b]$$</td>
+      <td>The real interval including $$a$$ and $$b$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle (a, b]$$</td>
+      <td>The real interval excluding $$a$$ but including $$b$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \sA \backslash \sB$$</td>
+      <td>Set subtraction, i.e., the set containing the elements of $$\sA$$ that are not in $$\sB$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \gG$$</td>
+      <td>A graph</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \parents_\gG(\ervx_i)$$</td>
+      <td>The parents of $$\ervx_i$$ in $$\gG$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="indexing">Indexing</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle \eva_i$$</td>
+      <td>Element $$i$$ of vector $$\va$$, with indexing starting at 1</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \eva_{-i}$$</td>
+      <td>All elements of vector $$\va$$ except for element $$i$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \emA_{i,j}$$</td>
+      <td>Element $$i, j$$ of matrix $$\mA$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mA_{i, :}$$</td>
+      <td>Row $$i$$ of matrix $$\mA$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mA_{:, i}$$</td>
+      <td>Column $$i$$ of matrix $$\mA$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \etA_{i, j, k}$$</td>
+      <td>Element $$(i, j, k)$$ of a 3-D tensor $$\tA$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \tA_{:, :, i}$$</td>
+      <td>2-D slice of a 3-D tensor</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \erva_i$$</td>
+      <td>Element $$i$$ of the random vector $$\rva$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="linear-algebra-operations">Linear Algebra Operations</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle \mA^\top$$</td>
+      <td>Transpose of matrix $$\mA$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mA^+$$</td>
+      <td>Moore-Penrose pseudoinverse of $$\mA$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mA \odot \mB $$</td>
+      <td>Element-wise (Hadamard) product of $$\mA$$ and $$\mB$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mathrm{det}(\mA)$$</td>
+      <td>Determinant of $$\mA$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="calculus">Calculus</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle\frac{d y} {d x}$$</td>
+      <td>Derivative of $$y$$ with respect to $$x$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \frac{\partial y} {\partial x} $$</td>
+      <td>Partial derivative of $$y$$ with respect to $$x$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \nabla_\vx y $$</td>
+      <td>Gradient of $$y$$ with respect to $$\vx$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \nabla_\mX y $$</td>
+      <td>Matrix derivatives of $$y$$ with respect to $$\mX$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \nabla_\tX y $$</td>
+      <td>Tensor containing derivatives of $$y$$ with respect to $$\tX$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \frac{\partial f}{\partial \vx} $$</td>
+      <td>Jacobian matrix $$\mJ \in \R^{m\times n}$$ of $$f: \R^n \rightarrow \R^m$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \nabla_\vx^2 f(\vx)\text{ or }\mH( f)(\vx)$$</td>
+      <td>The Hessian matrix of $$f$$ at input point $$\vx$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \int f(\vx) d\vx $$</td>
+      <td>Definite integral over the entire domain of $$\vx$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \int_\sS f(\vx) d\vx$$</td>
+      <td>Definite integral with respect to $$\vx$$ over the set $$\sS$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="probability-and-information-theory">Probability and Information Theory</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle \ra \bot \rb$$</td>
+      <td>The random variables $$\ra$$ and $$\rb$$ are independent</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \ra \bot \rb \mid \rc $$</td>
+      <td>They are conditionally independent given $$\rc$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle P(\ra)$$</td>
+      <td>A probability distribution over a discrete variable</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle p(\ra)$$</td>
+      <td>A probability distribution over a continuous variable, or over a variable whose type has not been specified</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \ra \sim P$$</td>
+      <td>Random variable $$\ra$$ has distribution $$P$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle  \E_{\rx\sim P} [ f(x) ]\text{ or } \E f(x)$$</td>
+      <td>Expectation of $$f(x)$$ with respect to $$P(\rx)$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \Var(f(x)) $$</td>
+      <td>Variance of $$f(x)$$ under $$P(\rx)$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \Cov(f(x),g(x)) $$</td>
+      <td>Covariance of $$f(x)$$ and $$g(x)$$ under $$P(\rx)$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle H(\rx) $$</td>
+      <td>Shannon entropy of the random variable $$\rx$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \KL ( P \Vert Q ) $$</td>
+      <td>Kullback-Leibler divergence of P and Q</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mathcal{N} ( \vx ; \vmu , \mSigma)$$</td>
+      <td>Gaussian distribution over $$\vx$$ with mean $$\vmu$$ and covariance $$\mSigma$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="functions">Functions</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle f: \sA \rightarrow \sB$$</td>
+      <td>The function $$f$$ with domain $$\sA$$ and range $$\sB$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle f \circ g $$</td>
+      <td>Composition of the functions $$f$$ and $$g$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle f(\vx ; \vtheta) $$</td>
+      <td>A function of $$\vx$$ parametrized by $$\vtheta$$. (Sometimes we write $$f(\vx)$$ and omit the argument $$\vtheta$$ to lighten notation)</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \log x$$</td>
+      <td>Natural logarithm of $$x$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \sigma(x)$$</td>
+      <td>Logistic sigmoid, $$\displaystyle \frac{1} {1 + \exp(-x)}$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \zeta(x)$$</td>
+      <td>Softplus, $$\log(1 + \exp(x))$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \vert\vert \vx \vert\vert_p $$</td>
+      <td>$$\normlp$$ norm of $$\vx$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \vert\vert \vx \vert\vert $$</td>
+      <td>$$\normltwo$$ norm of $$\vx$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle x^+$$</td>
+      <td>Positive part of $$x$$, i.e., $$\max(0,x)$$</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle _\mathrm{condition}$$</td>
+      <td>is 1 if the condition is true, 0 otherwise</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Sometimes we use a function $$f$$ whose argument is a scalar but apply
+it to a vector, matrix, or tensor: $$f(\vx)$$, $$f(\mX)$$, or $$f(\tX)$$.
+This denotes the application of $$f$$ to the
+array element-wise. For example, if $$\tC = \sigma(\tX)$$, then $$\etC_{i,j,k} = \sigma(\etX_{i,j,k})$$
+for all valid values of $$i$$, $$j$$ and $$k$$.</p>
+
+<h2 id="datasets-and-distributions">Datasets and Distributions</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$\displaystyle \pdata$$</td>
+      <td>The data generating distribution</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \ptrain$$</td>
+      <td>The empirical distribution defined by the training set</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \sX$$</td>
+      <td>A set of training examples</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \vx^{(i)}$$</td>
+      <td>The $$i$$-th example (input) from a dataset</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle y^{(i)}\text{ or }\vy^{(i)}$$</td>
+      <td>The target associated with $$\vx^{(i)}$$ for supervised learning</td>
+    </tr>
+    <tr>
+      <td>$$\displaystyle \mX$$</td>
+      <td>The $$m \times n$$ matrix with input example $$\vx^{(i)}$$ in row $$\mX_{i,:}$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="final-notes">Final Notes</h2>
+
+<p>For using these commands, your post should have the following yaml config in the beginning of your markdown file:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">dlbook_notation</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Due to the compatibility issue between Kramdown and Mathjax, You should not use the condition symbol (<code class="language-plaintext highlighter-rouge">|</code>) directly (kramdown table synyax), use the escaped text (<code class="language-plaintext highlighter-rouge">\vert</code>) instead. Furthermore, you will want to use double dollar sign (<code class="language-plaintext highlighter-rouge">$$...$$</code>) for most of your math notations, since single dollar sign (<code class="language-plaintext highlighter-rouge">$...$</code>) may have some conflict with kramdown. (e.g., underscore need to be escaped with <code class="language-plaintext highlighter-rouge">\_</code>)</p>]]></content><author><name>T Michel</name></author><summary type="html"><![CDATA[This document provides the notation used in the Deep Learning Book, and is highly based on this LaTex file. You can refer to the source of this post for the latex commands.]]></summary></entry><entry><title type="html">Styling Syntax Test</title><link href="/styling-syntax-test/" rel="alternate" type="text/html" title="Styling Syntax Test" /><published>2020-10-25T00:00:00+00:00</published><updated>2021-12-19T15:39:14+00:00</updated><id>/styling-syntax-test</id><content type="html" xml:base="/styling-syntax-test/"><![CDATA[<p>In this document, we’ll showcase some commonly used features that Jekyll can achieve in a generated website. All of them can work out-of-the-box if you forked <a href="https://github.com/trmwzm/min-mist-testing">our Minimal Mistakes Template</a>.</p>
+
+<p>The feature includes: markdown, mathjax, latex, yaml, css, html, liquid.</p>
+
+<!--more-->
+
+<h2 id="markdown-basics">Markdown Basics</h2>
+
+<p>See <a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdown</a> on GitHub Guides for the basic usages.</p>
+
+<p>The following demonstrations are all previews followed by its markdown syntax:</p>
+
+<hr />
+
+<p>Normal text</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+Normal text
+</code></pre></div></div>
+
+<hr />
+
+<p>Newline
+Failed</p>
+
+<p>Newline</p>
+
+<p>Success</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+Newline
+Failed
+
+Newline
+
+Success
+</code></pre></div></div>
+
+<hr />
+
+<blockquote>
+  <p>Snippet from other sites</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+&gt; Snippet from other sites
+</code></pre></div></div>
+
+<hr />
+
+<p><code class="language-plaintext highlighter-rouge">inline-code</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+`inline-code`
+</code></pre></div></div>
+
+<hr />
+
+<p><strong>Bold</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+**Bold**
+</code></pre></div></div>
+
+<hr />
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>code
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+```
+code
+```
+</code></pre></div></div>
+
+<hr />
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// c code</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+```c
+int a = 0; // c code
+```
+</code></pre></div></div>
+
+<hr />
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// js code</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+```js
+int a = 0; // js code
+```
+</code></pre></div></div>
+
+<hr />
+
+<ol>
+  <li>one
+    <ul>
+      <li>
+        <p>a</p>
+
+        <p>Contents should be indented correctly</p>
+      </li>
+      <li>
+        <p>b</p>
+
+        <p>Extra line to ensure line-break</p>
+      </li>
+    </ul>
+  </li>
+  <li>two
+    <ul>
+      <li>c
+Line-break failed</li>
+      <li>d</li>
+    </ul>
+
+    <p>No Indent</p>
+  </li>
+</ol>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="p">1.</span> one
+<span class="p">   -</span> a<span class="sb">
+
+     Contents should be indented correctly
+
+</span><span class="p">   -</span> b<span class="sb">
+
+     Extra line to ensure line-break
+</span><span class="p">2.</span> two
+<span class="p">   -</span> c
+     Line-break failed
+<span class="p">   -</span> d
+
+   No Indent
+</code></pre></div></div>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Table</th>
+      <th>Left</th>
+      <th style="text-align: center">Center</th>
+      <th style="text-align: right">Right</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>B</td>
+      <td style="text-align: center">C</td>
+      <td style="text-align: right">D</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: right">4</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+|Table|Left|Center|Right|
+|-----|----|:----:|----:|
+|A|B|C|D|
+|1|2|3|4|
+</code></pre></div></div>
+
+<hr />
+
+<p><img src="../assets/images/styling-syntax-test/img.png" alt="alt-text-of-sample-image" /></p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md (file <span class="sb">`img.png`</span> in assets/images/styling-syntax-test/):
+<span class="p">![</span><span class="nv">alt-text-of-sample-image</span><span class="p">](</span><span class="sx">{{site.imgs}}{{page.id}}/img.png</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><a href="https://google.com">In-line link (look bad in plain text)</a></p>
+
+<p><a href="https://google.com">This is better</a></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+[In-line link (look bad in plain text)](https://google.com)
+
+[This is better][google]
+
+[google]: https://google.com
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="header-example">Header example</h3>
+
+<h4 id="header-example2">Header example2</h4>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="gu">### Header example</span>
+
+<span class="gu">#### Header example2</span>
+</code></pre></div></div>
+
+<h2 id="mathjax--latex">MathJax &amp; LaTex</h2>
+
+<p>Inline math $$f(x)=x^2$$</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+Inline math $$f(x)=x^2$$
+</code></pre></div></div>
+
+<hr />
+
+<p>Long math</p>
+
+<p>$$\max\limits_\theta L_{\theta_0}(\theta)$$, subject to $$D_{KL}^{\rho_{\theta_0}}(\theta_0,\theta)\le\delta$$, where $$D_{KL}^\rho(\theta_1,\theta_2)=\mathbb{E}<em>{s\sim\rho}[D</em>{KL}(\pi_{\theta_1}(\cdot\vert s)\mid\mid\pi_{\theta_2}(\cdot\vert s))]$$</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="p">$$</span><span class="nv">\max\limits</span><span class="p">_</span><span class="nv">\theta</span><span class="nb"> L</span><span class="p">_{</span><span class="nv">\theta</span><span class="p">_</span><span class="m">0</span><span class="p">}</span><span class="o">(</span><span class="nv">\theta</span><span class="o">)</span><span class="p">$$</span>, subject to <span class="p">$$</span><span class="nb">D</span><span class="p">_{</span><span class="nb">KL</span><span class="p">}^{</span><span class="nv">\rho</span><span class="p">_{</span><span class="nv">\theta</span><span class="p">_</span><span class="m">0</span><span class="p">}}</span><span class="o">(</span><span class="nv">\theta</span><span class="p">_</span><span class="m">0</span><span class="nb">,</span><span class="nv">\theta</span><span class="o">)</span><span class="nv">\le\delta</span><span class="p">$$</span>, where <span class="p">$$</span><span class="nb">D</span><span class="p">_{</span><span class="nb">KL</span><span class="p">}^</span><span class="nv">\rho</span><span class="o">(</span><span class="nv">\theta</span><span class="p">_</span><span class="m">1</span><span class="nb">,</span><span class="nv">\theta</span><span class="p">_</span><span class="m">2</span><span class="o">)=</span><span class="nv">\mathbb</span><span class="p">{</span><span class="nb">E</span><span class="p">}_{</span><span class="nb">s</span><span class="nv">\sim\rho</span><span class="p">}</span><span class="o">[</span><span class="nb">D</span><span class="p">_{</span><span class="nb">KL</span><span class="p">}</span><span class="o">(</span><span class="nv">\pi</span><span class="p">_{</span><span class="nv">\theta</span><span class="p">_</span><span class="m">1</span><span class="p">}</span><span class="o">(</span><span class="nv">\cdot\vert</span><span class="nb"> s</span><span class="o">)</span><span class="nv">\mid\mid\pi</span><span class="p">_{</span><span class="nv">\theta</span><span class="p">_</span><span class="m">2</span><span class="p">}</span><span class="o">(</span><span class="nv">\cdot\vert</span><span class="nb"> s</span><span class="o">))]</span><span class="p">$$</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Centered math:</p>
+
+<p>$$f(x)=x^2$$</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+$$f(x)=x^2$$
+</code></pre></div></div>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Symbols</th>
+      <th style="text-align: center">Using</th>
+      <th style="text-align: center">Latex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$$✔$$</td>
+      <td style="text-align: center">$$\color{green} ✔$$</td>
+      <td style="text-align: center">$$\color{red} ✘$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+|Symbols|Using|Latex|
+|:-:|:-:|:-:|
+|<span class="p">$</span><span class="nb">✔</span><span class="p">$</span>|<span class="p">$</span><span class="nv">\color</span><span class="p">{</span><span class="nb">green</span><span class="p">}</span><span class="nb"> ✔</span><span class="p">$</span>|<span class="p">$</span><span class="nv">\color</span><span class="p">{</span><span class="nb">red</span><span class="p">}</span><span class="nb"> ✘</span><span class="p">$</span>|
+</code></pre></div></div>
+
+<hr />
+
+<p>$$\begin{aligned}
+G_t&amp;=R_{t+1}+\gamma R_{t+2}+\gamma^2 R_{t+3}+\gamma^3 R_{t+4}+…<br />
+&amp;=R_{t+1}+\gamma(R_{t+2}+\gamma R_{t+3}+\gamma^2 R_{t+4})+…<br />
+&amp;=R_{t+1}+\gamma G_{t+1}<br />
+\end{aligned}$$</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="p">$$</span><span class="nv">\begin</span><span class="p">{</span><span class="nb">aligned</span><span class="p">}</span><span class="nb">
+G</span><span class="p">_</span><span class="nb">t</span><span class="p">&amp;</span><span class="o">=</span><span class="nb">R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">1</span><span class="p">}</span><span class="o">+</span><span class="nv">\gamma</span><span class="nb"> R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">2</span><span class="p">}</span><span class="o">+</span><span class="nv">\gamma</span><span class="p">^</span><span class="m">2</span><span class="nb"> R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">3</span><span class="p">}</span><span class="o">+</span><span class="nv">\gamma</span><span class="p">^</span><span class="m">3</span><span class="nb"> R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">4</span><span class="p">}</span><span class="o">+</span><span class="nb">...</span><span class="nv">\\</span><span class="nb">
+</span><span class="p">&amp;</span><span class="o">=</span><span class="nb">R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">1</span><span class="p">}</span><span class="o">+</span><span class="nv">\gamma</span><span class="o">(</span><span class="nb">R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">2</span><span class="p">}</span><span class="o">+</span><span class="nv">\gamma</span><span class="nb"> R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">3</span><span class="p">}</span><span class="o">+</span><span class="nv">\gamma</span><span class="p">^</span><span class="m">2</span><span class="nb"> R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">4</span><span class="p">}</span><span class="o">)+</span><span class="nb">...</span><span class="nv">\\</span><span class="nb">
+</span><span class="p">&amp;</span><span class="o">=</span><span class="nb">R</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">1</span><span class="p">}</span><span class="o">+</span><span class="nv">\gamma</span><span class="nb"> G</span><span class="p">_{</span><span class="nb">t</span><span class="o">+</span><span class="m">1</span><span class="p">}</span><span class="nv">\\</span><span class="nb">
+</span><span class="nv">\end</span><span class="p">{</span><span class="nb">aligned</span><span class="p">}$$</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Broken equation $61<em>{10}$, $111101_2$, $3D</em>{16}$</p>
+
+<p>Fixed equation $61_{10}$, $111101_2$, $3D_{16}$</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+Broken equation $61_{10}$, $111101_2$, $3D_{16}$
+
+Fixed equation $61<span class="se">\_</span>{10}$, $111101<span class="se">\_</span>2$, $3D<span class="se">\_</span>{16}$
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note: The fixed equation only works when the <a href="https://docs.mathjax.org/en/latest/input/tex/delimiters.html">single dollar sign is enabled</a>.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="yaml">YAML</h2>
+
+<p>Should be at the front of every markdown file.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Styling</span><span class="nv"> </span><span class="s">Syntax</span><span class="nv"> </span><span class="s">Test"</span>
+<span class="na">tags</span><span class="pi">:</span> <span class="s">jekyll mathjax latex</span>
+<span class="na">last_modified_at</span><span class="pi">:</span> <span class="s">2021-12-19T06:53:11</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Text before this will be shown in search results.</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--more--&gt;</span>
+</code></pre></div></div>
+
+<h2 id="minimal-mistake-styles">Minimal Mistake Styles</h2>
+
+<div class="notice--danger">
+
+  <p>🧻 <strong>Preliminary Draft</strong></p>
+
+  <p>The author hasn’t finished editing this post, and the content hasn’t been proof-read. While this post may contain useful information, the overall quality may be pretty low.</p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice--danger"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+🧻 <span class="gs">**Preliminary Draft**</span>
+
+The author hasn't finished editing this post, and the content hasn't been proof-read. While this post may contain useful information, the overall quality may be pretty low.
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="notice--primary">
+
+  <p>📄 <strong>Source</strong></p>
+
+  <p>📜 Paper</p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice--primary"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+📄 <span class="gs">**Source**</span>
+
+📜 Paper
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="notice">
+
+  <p>✏️ <strong>Author’s Note</strong></p>
+
+  <p>Content</p>
+
+  <p><strong>Bold</strong></p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+✏️ <span class="gs">**Author's Note**</span>
+
+Content
+
+<span class="gs">**Bold**</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="notice--warning">
+
+  <p>♾️ <strong>Math Definition</strong></p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice--warning"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+♾️ <span class="gs">**Math Definition**</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="notice--danger">
+
+  <p>⚠️ <strong>Common Mistakes</strong></p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice--danger"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+⚠️ <span class="gs">**Common Mistakes**</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="notice--success">
+
+  <p>✔️ <strong>Keynote</strong></p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice--success"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+✔️ <span class="gs">**Keynote**</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="notice--info">
+
+  <p>🏷️ <strong>Label</strong></p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice--info"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+🏷️ <span class="gs">**Label**</span>
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="notice--info">
+
+  <p>📔 <strong>Prerequisites</strong></p>
+
+  <p>📝 Post</p>
+
+</div>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"notice--info"</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+
+📔 <span class="gs">**Prerequisites**</span>
+
+📝 Post
+
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h2 id="html">HTML</h2>
+
+<details><summary>Click to Expand</summary><div>
+    <p><strong>Yeah!</strong> Markdown</p>
+  </div></details>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="nt">&lt;details&gt;&lt;summary&gt;</span>Click to Expand<span class="nt">&lt;/summary&gt;&lt;div</span> <span class="na">markdown=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+<span class="gs">**Yeah!**</span> Markdown
+<span class="nt">&lt;/div&gt;&lt;/details&gt;</span>
+</code></pre></div></div>
+
+<h2 id="liquid">Liquid</h2>
+
+<p>/styling-syntax-test</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from md:
+<span class="p">{{</span><span class="nv">page</span><span class="p">.</span><span class="nv">id</span><span class="p">}}</span>
+</code></pre></div></div>
+
+<h2 id="final-notes">Final Notes</h2>
+
+<p>Due to the compatibility issue between Kramdown and Mathjax, You should not use the condition symbol (<code class="language-plaintext highlighter-rouge">|</code>) directly (kramdown table synyax), use the escaped text (<code class="language-plaintext highlighter-rouge">\vert</code>) instead. Furthermore, you will want to use double dollar sign (<code class="language-plaintext highlighter-rouge">$$...$$</code>) for most of your math notations, since single dollar sign (<code class="language-plaintext highlighter-rouge">$...$</code>) may have some conflict with kramdown. (e.g., underscore need to be escaped with <code class="language-plaintext highlighter-rouge">\_</code>)</p>]]></content><author><name>T Michel</name></author><summary type="html"><![CDATA[In this document, we’ll showcase some commonly used features that Jekyll can achieve in a generated website. All of them can work out-of-the-box if you forked our Minimal Mistakes Template. The feature includes: markdown, mathjax, latex, yaml, css, html, liquid.]]></summary></entry></feed>
